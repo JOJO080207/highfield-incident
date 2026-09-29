@@ -1,1 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="The Highfield Incident — Case #103196"
+    >
+
+    <title>The Highfield Incident | Case #103196</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black: #050505;
+            --panel: #0c0c0c;
+            --orange: #ff6a00;
+            --orange-dark: #8b2500;
+            --bone: #eee4cf;
+            --gray: #8b8b8b;
+            --red: #b52318;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    #2a1004 0%,
+                    #0b0b0b 35%,
+                    #030303 72%
+                );
+            color: var(--bone);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.16;
+
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,.025) 3px
+                );
+
+            z-index: 50;
+        }
+
+        /* HEADER */
+
+        .case-header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .case-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 220px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    #050505
+                );
+
+            pointer-events: none;
+        }
+
+        .hero {
+            width: min(900px, 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .classification {
+            display: inline-block;
+            border: 1px solid var(--orange-dark);
+            color: var(--orange);
+            padding: 8px 16px;
+            margin-bottom: 25px;
+
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+        }
+
+        .case-number {
+            color: var(--gray);
+            font-family: "Courier New", monospace;
+            letter-spacing: 0.25em;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(4rem, 12vw, 8.5rem);
+            line-height: 0.78;
+            letter-spacing: -0.065em;
+            color: var(--bone);
+
+            text-shadow:
+                0 5px 0 #4a1300,
+                0 0 35px rgba(255, 82, 0, .18);
+        }
+
+        .incident {
+            display: block;
+            color: var(--orange);
+        }
+
+        .date {
+            margin-top: 35px;
+            color: #a7a7a7;
+            font-family: "Courier New", monospace;
+            letter-spacing: 0.16em;
+        }
+
+        .status {
+            margin-top: 12px;
+            color: #ff493b;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 8px;
+            border-radius: 50%;
+            background: #ff3428;
+
+            box-shadow:
+                0 0 10px #ff3428;
+        }
+
+        .intro {
+            max-width: 650px;
+            margin: 35px auto 0;
+            color: #c7c0b4;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .enter-button {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 17px 32px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #b33b0c,
+                    #722000
+                );
+
+            border: 1px solid #e05b22;
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+            letter-spacing: 0.13em;
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,.55);
+
+            transition: .25s ease;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px);
+            background:
+                linear-gradient(
+                    180deg,
+                    #d94a0d,
+                    #842500
+                );
+        }
+
+        .scroll-note {
+            margin-top: 35px;
+            color: #5f5f5f;
+            font-size: .7rem;
+            letter-spacing: .18em;
+        }
+
+        /* CASE FILE */
+
+        .case-file {
+            background: #050505;
+            padding: 80px 20px 100px;
+        }
+
+        .container {
+            width: min(1050px, 100%);
+            margin: auto;
+        }
+
+        .section-label {
+            color: var(--orange);
+            font-size: .75rem;
+            font-weight: 900;
+            letter-spacing: .25em;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: clamp(2.5rem, 7vw, 4.8rem);
+            line-height: .95;
+            margin-bottom: 35px;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .panel {
+            position: relative;
+            padding: 28px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #101010,
+                    #090909
+                );
+
+            border: 1px solid #2e2e2e;
+            border-top: 3px solid #7a2b0b;
+        }
+
+        .panel h3 {
+            color: var(--orange);
+            margin-bottom: 15px;
+            letter-spacing: .08em;
+            font-size: .9rem;
+        }
+
+        .panel p {
+            color: #bcb6ab;
+            line-height: 1.7;
+        }
+
+        .record {
+            font-family: "Courier New", monospace;
+            margin-top: 15px;
+            color: #ddd2bf;
+            line-height: 1.9;
+        }
+
+        .unknown {
+            color: #ff493b;
+        }
+
+        /* WARNING */
+
+        .warning-box {
+            margin-top: 22px;
+            padding: 25px;
+            border: 1px solid #5b1c12;
+            background: #150806;
+        }
+
+        .warning-box strong {
+            display: block;
+            color: #ff563f;
+            margin-bottom: 10px;
+            letter-spacing: .15em;
+        }
+
+        .warning-box p {
+            color: #c9aaa4;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #020202;
+            border-top: 1px solid #222;
+            text-align: center;
+            padding: 35px 20px;
+            color: #4d4d4d;
+            font-family: "Courier New", monospace;
+            font-size: .72rem;
+            letter-spacing: .16em;
+        }
+
+        @media (max-width: 720px) {
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: clamp(3.7rem, 18vw, 6rem);
+            }
+
+            .intro {
+                font-size: .95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="case-header">
+
+        <div class="hero">
+
+            <div class="classification">
+                INCIDENT COMMAND // AUTHORIZED ACCESS
+            </div>
+
+            <div class="case-number">
+                CASE FILE #103196
+            </div>
+
+            <h1>
+                THE HIGHFIELD
+                <span class="incident">INCIDENT</span>
+            </h1>
+
+            <div class="date">
+                OCTOBER 31, 1996 // 23:47 HOURS
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                CASE STATUS: UNSOLVED
+            </div>
+
+            <p class="intro">
+                Four teenagers entered Highfield on Halloween night.
+                Three returned.
+                Evan Mercer did not.
+                Thirty years later, evidence connected to his
+                disappearance has surfaced again.
+            </p>
+
+            <a
+                class="enter-button"
+                href="#case-file"
+            >
+                ENTER CASE FILE
+            </a>
+
+            <div class="scroll-note">
+                HIGHFIELD INCIDENT COMMAND • FIELD SYSTEM
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main
+        id="case-file"
+        class="case-file"
+    >
+
+        <div class="container">
+
+            <div class="section-label">
+                ACTIVE INVESTIGATION
+            </div>
+
+            <h2 class="section-title">
+                CASE BRIEF
+            </h2>
+
+
+            <div class="case-grid">
+
+                <section class="panel">
+
+                    <h3>
+                        MISSING PERSON
+                    </h3>
+
+                    <div class="record">
+                        NAME: EVAN MERCER<br>
+                        STATUS:
+                        <span class="unknown">
+                            UNKNOWN
+                        </span><br>
+                        LAST SEEN: HIGHFIELD<br>
+                        DATE: 10/31/1996<br>
+                        TIME: 11:47 PM
+                    </div>
+
+                </section>
+
+
+                <section class="panel">
+
+                    <h3>
+                        ORIGINAL INCIDENT
+                    </h3>
+
+                    <p>
+                        Four teenagers entered the Highfield area
+                        searching for something they referred to only
+                        as <strong>"The Lantern."</strong>
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        Three returned.
+                        Evan Mercer was never located.
+                    </p>
+
+                </section>
+
+
+                <section class="panel">
+
+                    <h3>
+                        NEW DEVELOPMENT
+                    </h3>
+
+                    <p>
+                        Five pieces of evidence believed to be connected
+                        to the original investigation have appeared
+                        throughout Highfield.
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        Investigation teams have been authorized to
+                        recover and document the evidence.
+                    </p>
+
+                </section>
+
+
+                <section class="panel">
+
+                    <h3>
+                        PRIMARY OBJECTIVE
+                    </h3>
+
+                    <p>
+                        Examine each assigned location.
+                        Recover all available evidence.
+                        Preserve every fragment.
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        Return all recovered material to Incident
+                        Command for reconstruction.
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <div class="warning-box">
+
+                <strong>
+                    FIELD DIRECTIVE
+                </strong>
+
+                <p>
+                    Do not assume the original investigation was correct.
+                    Do not assume another team's conclusion is correct.
+                    Document what you observe.
+                    Preserve what you recover.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        HIGHFIELD INCIDENT COMMAND //
+        CASE #103196 //
+        INVESTIGATION ACTIVE
+    </footer>
+
+</body>
+</html>
