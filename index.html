@@ -1,800 +1,992 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="The Highfield Incident — Case #103196"
-    >
-
-    <title>The Highfield Incident | Case #103196</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --black: #050505;
-            --panel: #0c0c0c;
-            --orange: #ff6a00;
-            --orange-dark: #8b2500;
-            --bone: #eee4cf;
-            --gray: #8b8b8b;
-            --red: #b52318;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-            background:
-                radial-gradient(
-                    circle at 50% 20%,
-                    #2a1004 0%,
-                    #0b0b0b 35%,
-                    #030303 72%
-                );
-            color: var(--bone);
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.16;
-
-            background-image:
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255,255,255,.025) 3px
-                );
-
-            z-index: 50;
-        }
-
-        /* HEADER */
-
-        .case-header {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 40px 20px;
-        }
-
-        .case-header::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 220px;
-
-            background:
-                linear-gradient(
-                    transparent,
-                    #050505
-                );
-
-            pointer-events: none;
-        }
-
-        .hero {
-            width: min(900px, 100%);
-            position: relative;
-            z-index: 2;
-        }
-
-        .classification {
-            display: inline-block;
-            border: 1px solid var(--orange-dark);
-            color: var(--orange);
-            padding: 8px 16px;
-            margin-bottom: 25px;
-
-            font-size: 0.75rem;
-            font-weight: 900;
-            letter-spacing: 0.25em;
-        }
-
-        .case-number {
-            color: var(--gray);
-            font-family: "Courier New", monospace;
-            letter-spacing: 0.25em;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(4rem, 12vw, 8.5rem);
-            line-height: 0.78;
-            letter-spacing: -0.065em;
-            color: var(--bone);
-
-            text-shadow:
-                0 5px 0 #4a1300,
-                0 0 35px rgba(255, 82, 0, .18);
-        }
-
-        .incident {
-            display: block;
-            color: var(--orange);
-        }
-
-        .date {
-            margin-top: 35px;
-            color: #a7a7a7;
-            font-family: "Courier New", monospace;
-            letter-spacing: 0.16em;
-        }
-
-        .status {
-            margin-top: 12px;
-            color: #ff493b;
-            font-family: "Courier New", monospace;
-            font-weight: bold;
-            letter-spacing: 0.12em;
-        }
-
-        .status-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            margin-right: 8px;
-            border-radius: 50%;
-            background: #ff3428;
-
-            box-shadow:
-                0 0 10px #ff3428;
-        }
-
-        .intro {
-            max-width: 650px;
-            margin: 35px auto 0;
-            color: #c7c0b4;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        .enter-button {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 17px 32px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #b33b0c,
-                    #722000
-                );
-
-            border: 1px solid #e05b22;
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            letter-spacing: 0.13em;
-
-            box-shadow:
-                0 10px 35px rgba(0,0,0,.55);
-
-            transition: .25s ease;
-        }
-
-        .enter-button:hover {
-            transform: translateY(-3px);
-            background:
-                linear-gradient(
-                    180deg,
-                    #d94a0d,
-                    #842500
-                );
-        }
-
-        .scroll-note {
-            margin-top: 35px;
-            color: #5f5f5f;
-            font-size: .7rem;
-            letter-spacing: .18em;
-        }
-
-        /* CASE FILE */
-
-        .case-file {
-            background: #050505;
-            padding: 80px 20px 100px;
-        }
-
-        .container {
-            width: min(1050px, 100%);
-            margin: auto;
-        }
-
-        .section-label {
-            color: var(--orange);
-            font-size: .75rem;
-            font-weight: 900;
-            letter-spacing: .25em;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-family: Georgia, serif;
-            font-size: clamp(2.5rem, 7vw, 4.8rem);
-            line-height: .95;
-            margin-bottom: 35px;
-        }
-
-        .case-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 22px;
-        }
-
-        .panel {
-            position: relative;
-            padding: 28px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #101010,
-                    #090909
-                );
-
-            border: 1px solid #2e2e2e;
-            border-top: 3px solid #7a2b0b;
-        }
-
-        .panel h3 {
-            color: var(--orange);
-            margin-bottom: 15px;
-            letter-spacing: .08em;
-            font-size: .9rem;
-        }
-
-        .panel p {
-            color: #bcb6ab;
-            line-height: 1.7;
-        }
-
-        .record {
-            font-family: "Courier New", monospace;
-            margin-top: 15px;
-            color: #ddd2bf;
-            line-height: 1.9;
-        }
-
-        .unknown {
-            color: #ff493b;
-        }
-
-        /* WARNING */
-
-        .warning-box {
-            margin-top: 22px;
-            padding: 25px;
-            border: 1px solid #5b1c12;
-            background: #150806;
-        }
-
-        .warning-box strong {
-            display: block;
-            color: #ff563f;
-            margin-bottom: 10px;
-            letter-spacing: .15em;
-        }
-
-        .warning-box p {
-            color: #c9aaa4;
-            line-height: 1.6;
-        }
-
-        /* FIELD OPERATIONS MAP */
-
-        .field-operations {
-            padding: 90px 20px 110px;
-
-            background:
-                radial-gradient(
-                    circle at 50% 25%,
-                    rgba(110, 31, 4, .22),
-                    transparent 40%
-                ),
-                #070707;
-
-            border-top: 1px solid #24140d;
-        }
-
-        .field-heading {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .field-heading .section-label {
-            color: var(--orange);
-        }
-
-        .field-subtitle {
-            color: #8d877d;
-            font-family: "Courier New", monospace;
-            letter-spacing: .15em;
-            font-size: .8rem;
-            margin-top: -20px;
-        }
-
-        .map-frame {
-            position: relative;
-            margin-top: 35px;
-            padding: 9px;
-            background: #080808;
-            border: 1px solid #643019;
-
-            box-shadow:
-                0 0 0 1px #1c100a,
-                0 0 35px rgba(255, 91, 20, .12),
-                0 25px 60px rgba(0,0,0,.75);
-        }
-
-        .map-frame::before {
-            content: "INCIDENT COMMAND // FIELD MAP";
-            position: absolute;
-            z-index: 3;
-            top: 22px;
-            left: 22px;
-
-            background: rgba(5,5,5,.90);
-            border: 1px solid #773319;
-            border-left: 4px solid var(--orange);
-
-            color: #f16a2c;
-            padding: 10px 14px;
-
-            font-family: "Courier New", monospace;
-            font-weight: bold;
-            font-size: .7rem;
-            letter-spacing: .13em;
-
-            pointer-events: none;
-        }
-
-        .map-link {
-            display: block;
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .map-link img {
-            display: block;
-            width: 100%;
-            height: auto;
-
-            transition:
-                transform .35s ease,
-                filter .35s ease;
-
-            filter:
-                contrast(1.04)
-                saturate(.92)
-                brightness(.92);
-        }
-
-        .map-link:hover img {
-            transform: scale(1.012);
-
-            filter:
-                contrast(1.06)
-                saturate(1)
-                brightness(1);
-        }
-
-        .map-expand {
-            position: absolute;
-            right: 18px;
-            bottom: 18px;
-
-            padding: 10px 14px;
-
-            background: rgba(5,5,5,.92);
-            border: 1px solid #86401e;
-
-            color: #f0dfca;
-
-            font-family: "Courier New", monospace;
-            font-size: .7rem;
-            font-weight: bold;
-            letter-spacing: .1em;
-
-            pointer-events: none;
-        }
-
-        .command-notice {
-            margin-top: 24px;
-
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 18px;
-
-            padding: 22px 24px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #160a06,
-                    #0c0908
-                );
-
-            border: 1px solid #442015;
-            border-left: 4px solid var(--orange);
-        }
-
-        .command-icon {
-            font-size: 1.7rem;
-        }
-
-        .command-copy strong {
-            display: block;
-            margin-bottom: 7px;
-
-            color: var(--orange);
-
-            font-family: "Courier New", monospace;
-            font-size: .75rem;
-            letter-spacing: .16em;
-        }
-
-        .command-copy p {
-            color: #bcb3a6;
-            line-height: 1.65;
-        }
-
-        .map-classification {
-            margin-top: 17px;
-            text-align: center;
-
-            color: #55504b;
-
-            font-family: "Courier New", monospace;
-            font-size: .65rem;
-            letter-spacing: .14em;
-        }
-
-        /* FOOTER */
-
-        footer {
-            background: #020202;
-            border-top: 1px solid #222;
-            text-align: center;
-            padding: 35px 20px;
-            color: #4d4d4d;
-            font-family: "Courier New", monospace;
-            font-size: .72rem;
-            letter-spacing: .16em;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 720px) {
-
-            .case-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: clamp(3.7rem, 18vw, 6rem);
-            }
-
-            .intro {
-                font-size: .95rem;
-            }
-
-            .field-operations {
-                padding: 65px 12px 80px;
-            }
-
-            .map-frame {
-                padding: 5px;
-            }
-
-            .map-frame::before {
-                top: 12px;
-                left: 12px;
-                font-size: .55rem;
-                padding: 7px 9px;
-            }
-
-            .map-expand {
-                right: 10px;
-                bottom: 10px;
-                font-size: .55rem;
-                padding: 7px 9px;
-            }
-
-            .command-notice {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Highfield Incident — Case #103196">
+<title>The Highfield Incident | Case #103196</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #030303;
+    --panel: #0c0907;
+    --orange: #ff641f;
+    --orange-hot: #ff7a22;
+    --orange-dark: #7b2109;
+    --red: #d3261d;
+    --blood: #82140f;
+    --bone: #f0e5ce;
+    --paper: #d7c5a1;
+    --gray: #918a80;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #030303;
+    color: var(--bone);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: .17;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 2px,
+            rgba(255,255,255,.025) 3px
+        );
+}
+
+/* HERO */
+
+.case-header {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 55px 20px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 46%,
+            rgba(180,45,5,.28) 0%,
+            rgba(70,15,2,.14) 27%,
+            transparent 55%
+        ),
+        linear-gradient(
+            180deg,
+            #020202 0%,
+            #090402 55%,
+            #030303 100%
+        );
+}
+
+.case-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 17% 62%,
+            rgba(255,75,10,.11),
+            transparent 18%
+        ),
+        radial-gradient(
+            circle at 84% 55%,
+            rgba(255,90,10,.10),
+            transparent 20%
+        );
+}
+
+.case-header::after {
+    content: "";
+    position: absolute;
+    left: -10%;
+    right: -10%;
+    bottom: -30px;
+    height: 230px;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(126,31,3,.25),
+            transparent 60%
+        );
+    filter: blur(20px);
+}
+
+.hero {
+    width: min(1000px, 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.classification {
+    display: inline-block;
+    position: relative;
+    transform: rotate(-1deg);
+
+    padding: 9px 18px;
+    margin-bottom: 26px;
+
+    border: 2px solid #a33019;
+    color: #f75c32;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .22em;
+
+    text-shadow: 0 0 10px rgba(255,70,20,.3);
+}
+
+.classification::after {
+    content: "RESTRICTED";
+    position: absolute;
+    right: -25px;
+    bottom: -19px;
+    padding: 2px 6px;
+
+    background: #180503;
+    color: #8f2119;
+    border: 1px solid #55110d;
+
+    font-size: .45rem;
+    letter-spacing: .12em;
+    transform: rotate(5deg);
+}
+
+.case-number {
+    color: #91877a;
+    font-family: "Courier New", monospace;
+    letter-spacing: .27em;
+    font-size: .82rem;
+    margin-bottom: 17px;
+}
+
+.title-the {
+    display: block;
+    color: var(--bone);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.5rem, 6vw, 4.6rem);
+    line-height: .8;
+    letter-spacing: .04em;
+}
+
+h1 {
+    margin-top: 8px;
+    line-height: .76;
+    text-transform: uppercase;
+}
+
+.highfield {
+    display: block;
+    color: #e32d20;
+
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(5rem, 15vw, 10.5rem);
+    letter-spacing: -.035em;
+
+    text-shadow:
+        2px 3px 0 #4b0804,
+        -2px -1px 0 #5e0d07,
+        0 0 25px rgba(220,38,18,.23);
+}
+
+.incident {
+    display: block;
+    color: var(--bone);
+
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(4.2rem, 12vw, 8.5rem);
+    letter-spacing: .01em;
+
+    text-shadow:
+        3px 4px 0 #4b1b08,
+        0 0 25px rgba(255,90,20,.16);
+}
+
+.hunt-label {
+    margin-top: 22px;
+    color: #e47742;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    font-size: .72rem;
+    letter-spacing: .32em;
+}
+
+.date {
+    margin-top: 28px;
+    color: #a79b8c;
+    font-family: "Courier New", monospace;
+    letter-spacing: .16em;
+    font-size: .82rem;
+}
+
+.status {
+    margin-top: 12px;
+    color: #ff493b;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    letter-spacing: .13em;
+    font-size: .8rem;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 9px;
+    border-radius: 50%;
+    background: #ff3428;
+    box-shadow: 0 0 12px #ff3428;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%,100% {
+        opacity: .65;
+        box-shadow: 0 0 6px #ff3428;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 18px #ff3428;
+    }
+}
+
+.hero-story {
+    max-width: 700px;
+    margin: 30px auto 0;
+    padding: 21px 25px;
+
+    background: rgba(8,5,3,.66);
+    border-top: 1px solid #4b2010;
+    border-bottom: 1px solid #4b2010;
+
+    color: #d2c6b5;
+    line-height: 1.75;
+    font-family: Georgia, serif;
+    font-size: 1.02rem;
+}
+
+.hero-story strong {
+    color: #ff6b38;
+}
+
+.enter-button {
+    display: inline-block;
+    margin-top: 31px;
+    padding: 17px 32px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #c03913,
+            #761b07
+        );
+
+    border: 1px solid #ef6734;
+    outline: 1px solid #481206;
+
+    color: #fff7e8;
+    text-decoration: none;
+
+    font-family: "Courier New", monospace;
+    font-weight: 900;
+    letter-spacing: .13em;
+
+    box-shadow:
+        0 0 22px rgba(255,72,15,.12),
+        0 12px 35px rgba(0,0,0,.6);
+
+    transition: .25s ease;
+}
+
+.enter-button:hover {
+    transform: translateY(-3px) scale(1.015);
+    background:
+        linear-gradient(
+            180deg,
+            #e94a16,
+            #8e2208
+        );
+    box-shadow:
+        0 0 32px rgba(255,72,15,.25),
+        0 15px 40px rgba(0,0,0,.7);
+}
+
+.scroll-note {
+    margin-top: 30px;
+    color: #514943;
+    font-family: "Courier New", monospace;
+    font-size: .65rem;
+    letter-spacing: .18em;
+}
+
+/* CASE FILE */
+
+.case-file {
+    position: relative;
+    padding: 95px 20px 105px;
+
+    background:
+        radial-gradient(
+            circle at 12% 20%,
+            rgba(120,30,4,.08),
+            transparent 25%
+        ),
+        #050505;
+
+    border-top: 1px solid #24130c;
+}
+
+.container {
+    width: min(1100px, 100%);
+    margin: auto;
+}
+
+.section-label {
+    color: var(--orange);
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .24em;
+    margin-bottom: 11px;
+}
+
+.section-title {
+    color: var(--bone);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(3rem, 8vw, 5.3rem);
+    letter-spacing: .02em;
+    line-height: .9;
+    margin-bottom: 38px;
+
+    text-shadow: 2px 3px 0 #4c1607;
+}
+
+.case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.panel {
+    position: relative;
+    min-height: 225px;
+    padding: 29px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #14100c,
+            #080706 70%
+        );
+
+    border: 1px solid #443023;
+    border-top: 4px solid #a22d13;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.38),
+        inset 0 0 35px rgba(105,38,9,.07);
+}
+
+.panel::before {
+    content: "EVIDENCE FILE";
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    color: #4f4035;
+    font-family: "Courier New", monospace;
+    font-size: .52rem;
+    letter-spacing: .13em;
+}
+
+.panel:nth-child(2) {
+    transform: rotate(.3deg);
+}
+
+.panel:nth-child(3) {
+    transform: rotate(-.25deg);
+}
+
+.panel h3 {
+    color: #ff6334;
+    margin-bottom: 17px;
+
+    font-family: "Courier New", monospace;
+    letter-spacing: .12em;
+    font-size: .83rem;
+}
+
+.panel p {
+    color: #c5b8a6;
+    line-height: 1.72;
+}
+
+.record {
+    font-family: "Courier New", monospace;
+    margin-top: 15px;
+    color: #ded1bb;
+    line-height: 1.95;
+}
+
+.unknown {
+    display: inline-block;
+    color: #ff4134;
+    border: 1px solid #6f1811;
+    padding: 0 5px;
+    transform: rotate(-2deg);
+}
+
+/* DIRECTIVE */
+
+.warning-box {
+    position: relative;
+    margin-top: 26px;
+    padding: 27px 28px;
+
+    border: 1px solid #6b2116;
+    border-left: 5px solid #ce321d;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            #160806,
+            #160806 10px,
+            #130706 10px,
+            #130706 20px
+        );
+}
+
+.warning-box strong {
+    display: block;
+    color: #ff533c;
+    margin-bottom: 10px;
+
+    font-family: "Courier New", monospace;
+    letter-spacing: .16em;
+}
+
+.warning-box p {
+    color: #cbaea7;
+    line-height: 1.65;
+}
+
+/* FIELD OPERATIONS */
+
+.field-operations {
+    padding: 95px 20px 110px;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(150,41,5,.17),
+            transparent 38%
+        ),
+        #070504;
+
+    border-top: 1px solid #35180c;
+}
+
+.field-heading {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.field-subtitle {
+    color: #8d8174;
+    font-family: "Courier New", monospace;
+    letter-spacing: .16em;
+    font-size: .75rem;
+    margin-top: -22px;
+}
+
+.map-frame {
+    position: relative;
+    margin-top: 38px;
+    padding: 9px;
+
+    background: #050403;
+    border: 1px solid #8a3b1a;
+
+    box-shadow:
+        0 0 0 2px #1a0c07,
+        0 0 40px rgba(255,82,16,.13),
+        0 28px 70px rgba(0,0,0,.8);
+}
+
+.map-frame::before {
+    content: "FIELD DOCUMENT // ACTIVE SEARCH GRID";
+    position: absolute;
+    z-index: 3;
+    top: 22px;
+    left: 22px;
+
+    padding: 10px 14px;
+
+    background: rgba(4,4,4,.92);
+    border: 1px solid #8a3519;
+    border-left: 5px solid var(--orange);
+
+    color: #ff6934;
+
+    font-family: "Courier New", monospace;
+    font-size: .67rem;
+    font-weight: bold;
+    letter-spacing: .13em;
+
+    pointer-events: none;
+}
+
+.map-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.map-link img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    filter:
+        contrast(1.07)
+        saturate(1.05)
+        brightness(.9);
+
+    transition: .35s ease;
+}
+
+.map-link:hover img {
+    transform: scale(1.012);
+
+    filter:
+        contrast(1.08)
+        saturate(1.12)
+        brightness(.98);
+}
+
+.map-expand {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+
+    padding: 11px 14px;
+
+    background: rgba(4,4,4,.94);
+    border: 1px solid #99411e;
+
+    color: #f3e2ca;
+
+    font-family: "Courier New", monospace;
+    font-size: .67rem;
+    font-weight: bold;
+    letter-spacing: .1em;
+
+    pointer-events: none;
+}
+
+.command-notice {
+    margin-top: 26px;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+
+    padding: 24px 26px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #190906,
+            #0a0705
+        );
+
+    border: 1px solid #542215;
+    border-left: 5px solid #e24420;
+}
+
+.command-icon {
+    color: #ff572e;
+    font-size: 1.7rem;
+}
+
+.command-copy strong {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #ff6334;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    letter-spacing: .16em;
+}
+
+.command-copy p {
+    color: #c5b7a5;
+    line-height: 1.68;
+}
+
+.map-classification {
+    margin-top: 18px;
+    text-align: center;
+
+    color: #5d524a;
+
+    font-family: "Courier New", monospace;
+    font-size: .62rem;
+    letter-spacing: .14em;
+}
+
+/* FOOTER */
+
+footer {
+    background: #020202;
+    border-top: 1px solid #29140b;
+    text-align: center;
+    padding: 38px 20px;
+
+    color: #554a43;
+
+    font-family: "Courier New", monospace;
+    font-size: .68rem;
+    letter-spacing: .16em;
+}
+
+/* MOBILE */
+
+@media (max-width: 720px) {
+
+    .case-header {
+        padding: 45px 14px;
+    }
+
+    .highfield {
+        font-size: clamp(4.2rem, 20vw, 7rem);
+    }
+
+    .incident {
+        font-size: clamp(3.5rem, 17vw, 6rem);
+    }
+
+    .hero-story {
+        font-size: .93rem;
+        padding: 18px;
+    }
+
+    .case-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel:nth-child(2),
+    .panel:nth-child(3) {
+        transform: none;
+    }
+
+    .field-operations {
+        padding: 70px 12px 80px;
+    }
+
+    .map-frame {
+        padding: 5px;
+    }
+
+    .map-frame::before {
+        top: 11px;
+        left: 11px;
+        padding: 7px 9px;
+        font-size: .5rem;
+    }
+
+    .map-expand {
+        right: 10px;
+        bottom: 10px;
+        padding: 7px 9px;
+        font-size: .52rem;
+    }
+
+    .command-notice {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header class="case-header">
+<header class="case-header">
 
-        <div class="hero">
+    <div class="hero">
 
-            <div class="classification">
-                INCIDENT COMMAND // AUTHORIZED ACCESS
-            </div>
+        <div class="classification">
+            INCIDENT COMMAND // AUTHORIZED ACCESS
+        </div>
 
-            <div class="case-number">
-                CASE FILE #103196
-            </div>
+        <div class="case-number">
+            CASE FILE #103196
+        </div>
 
-            <h1>
-                THE HIGHFIELD
-                <span class="incident">INCIDENT</span>
-            </h1>
+        <h1>
+            <span class="title-the">THE</span>
+            <span class="highfield">HIGHFIELD</span>
+            <span class="incident">INCIDENT</span>
+        </h1>
 
-            <div class="date">
-                OCTOBER 31, 1996 // 23:47 HOURS
-            </div>
+        <div class="hunt-label">
+            NEIGHBORHOOD INVESTIGATION
+        </div>
 
-            <div class="status">
-                <span class="status-dot"></span>
-                CASE STATUS: UNSOLVED
-            </div>
+        <div class="date">
+            OCTOBER 31, 1996 // 23:47 HOURS
+        </div>
 
-            <p class="intro">
-                Four teenagers entered Highfield on Halloween night.
-                Three returned.
-                Evan Mercer did not.
-                Thirty years later, evidence connected to his
-                disappearance has surfaced again.
+        <div class="status">
+            <span class="status-dot"></span>
+            CASE STATUS: UNSOLVED
+        </div>
+
+        <div class="hero-story">
+            Four teenagers entered Highfield on Halloween night
+            searching for something locals called
+            <strong>The Lantern.</strong>
+            Three returned.
+            Evan Mercer did not.
+            Thirty years later, evidence connected to that night
+            has surfaced throughout the neighborhood.
+        </div>
+
+        <a
+            class="enter-button"
+            href="#case-file"
+        >
+            ⚠ OPEN INVESTIGATION FILE
+        </a>
+
+        <div class="scroll-note">
+            HIGHFIELD INCIDENT COMMAND • FIELD SYSTEM
+        </div>
+
+    </div>
+
+</header>
+
+
+<main
+    id="case-file"
+    class="case-file"
+>
+
+    <div class="container">
+
+        <div class="section-label">
+            ACTIVE INVESTIGATION // CASE #103196
+        </div>
+
+        <h2 class="section-title">
+            CASE BRIEF
+        </h2>
+
+
+        <div class="case-grid">
+
+            <section class="panel">
+
+                <h3>
+                    FILE 01 // MISSING PERSON
+                </h3>
+
+                <div class="record">
+                    NAME: EVAN MERCER<br>
+                    STATUS:
+                    <span class="unknown">
+                        UNKNOWN
+                    </span><br>
+                    LAST SEEN: HIGHFIELD<br>
+                    DATE: 10/31/1996<br>
+                    TIME: 11:47 PM
+                </div>
+
+            </section>
+
+
+            <section class="panel">
+
+                <h3>
+                    FILE 02 // ORIGINAL INCIDENT
+                </h3>
+
+                <p>
+                    Four teenagers entered the Highfield area
+                    searching for something they referred to only
+                    as <strong>"The Lantern."</strong>
+                </p>
+
+                <p style="margin-top:15px;">
+                    Three returned.
+                    Evan Mercer was never located.
+                </p>
+
+            </section>
+
+
+            <section class="panel">
+
+                <h3>
+                    FILE 03 // NEW DEVELOPMENT
+                </h3>
+
+                <p>
+                    Five fragments believed to be connected to the
+                    original investigation have appeared throughout
+                    Highfield.
+                </p>
+
+                <p style="margin-top:15px;">
+                    Investigation teams have been authorized to
+                    locate, recover, and preserve all five.
+                </p>
+
+            </section>
+
+
+            <section class="panel">
+
+                <h3>
+                    FILE 04 // PRIMARY OBJECTIVE
+                </h3>
+
+                <p>
+                    Examine each assigned location.
+                    Complete the station investigation.
+                    Recover the evidence fragment.
+                </p>
+
+                <p style="margin-top:15px;">
+                    Return all five fragments to Incident Command
+                    and reconstruct the evidence.
+                </p>
+
+            </section>
+
+        </div>
+
+
+        <div class="warning-box">
+
+            <strong>
+                ⚠ INCIDENT COMMAND FIELD DIRECTIVE
+            </strong>
+
+            <p>
+                Do not assume the original investigation was correct.
+                Do not assume another team's conclusion is correct.
+                Observe carefully. Solve each station. Preserve every
+                fragment. Your final answer must be supported by the
+                evidence you recover.
             </p>
 
-            <a
-                class="enter-button"
-                href="#case-file"
-            >
-                ENTER CASE FILE
-            </a>
+        </div>
 
-            <div class="scroll-note">
-                HIGHFIELD INCIDENT COMMAND • FIELD SYSTEM
+    </div>
+
+</main>
+
+
+<section class="field-operations">
+
+    <div class="container">
+
+        <div class="field-heading">
+
+            <div class="section-label">
+                INCIDENT COMMAND // FIELD OPERATIONS
+            </div>
+
+            <h2 class="section-title">
+                SEARCH AREA
+            </h2>
+
+            <div class="field-subtitle">
+                HIGHFIELD NEIGHBORHOOD // OPERATIONAL MAP
             </div>
 
         </div>
 
-    </header>
+
+        <div class="map-frame">
+
+            <a
+                class="map-link"
+                href="highfield-map.png"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open full-size Highfield Incident field map"
+            >
+
+                <img
+                    src="highfield-map.png"
+                    alt="Highfield Incident neighborhood scavenger hunt field map"
+                >
+
+                <div class="map-expand">
+                    OPEN FULL-SIZE MAP ↗
+                </div>
+
+            </a>
+
+        </div>
 
 
-    <main
-        id="case-file"
-        class="case-file"
-    >
+        <div class="command-notice">
 
-        <div class="container">
-
-            <div class="section-label">
-                ACTIVE INVESTIGATION
+            <div class="command-icon">
+                ⚠
             </div>
 
-            <h2 class="section-title">
-                CASE BRIEF
-            </h2>
-
-
-            <div class="case-grid">
-
-                <section class="panel">
-
-                    <h3>
-                        MISSING PERSON
-                    </h3>
-
-                    <div class="record">
-                        NAME: EVAN MERCER<br>
-                        STATUS:
-                        <span class="unknown">
-                            UNKNOWN
-                        </span><br>
-                        LAST SEEN: HIGHFIELD<br>
-                        DATE: 10/31/1996<br>
-                        TIME: 11:47 PM
-                    </div>
-
-                </section>
-
-
-                <section class="panel">
-
-                    <h3>
-                        ORIGINAL INCIDENT
-                    </h3>
-
-                    <p>
-                        Four teenagers entered the Highfield area
-                        searching for something they referred to only
-                        as <strong>"The Lantern."</strong>
-                    </p>
-
-                    <p style="margin-top:15px;">
-                        Three returned.
-                        Evan Mercer was never located.
-                    </p>
-
-                </section>
-
-
-                <section class="panel">
-
-                    <h3>
-                        NEW DEVELOPMENT
-                    </h3>
-
-                    <p>
-                        Five pieces of evidence believed to be connected
-                        to the original investigation have appeared
-                        throughout Highfield.
-                    </p>
-
-                    <p style="margin-top:15px;">
-                        Investigation teams have been authorized to
-                        recover and document the evidence.
-                    </p>
-
-                </section>
-
-
-                <section class="panel">
-
-                    <h3>
-                        PRIMARY OBJECTIVE
-                    </h3>
-
-                    <p>
-                        Examine each assigned location.
-                        Recover all available evidence.
-                        Preserve every fragment.
-                    </p>
-
-                    <p style="margin-top:15px;">
-                        Return all recovered material to Incident
-                        Command for reconstruction.
-                    </p>
-
-                </section>
-
-            </div>
-
-
-            <div class="warning-box">
+            <div class="command-copy">
 
                 <strong>
-                    FIELD DIRECTIVE
+                    FIELD DIRECTIVE // READ BEFORE DEPLOYMENT
                 </strong>
 
                 <p>
-                    Do not assume the original investigation was correct.
-                    Do not assume another team's conclusion is correct.
-                    Document what you observe.
-                    Preserve what you recover.
+                    Report to HQ for team assignment and mission brief.
+                    Follow your assigned route and remain with your team.
+                    Recover evidence only from authorized stations.
+                    Woods, pond areas, private property, and all locations
+                    identified as OUT OF BOUNDS are prohibited.
                 </p>
 
             </div>
 
         </div>
 
-    </main>
 
-
-    <section class="field-operations">
-
-        <div class="container">
-
-            <div class="field-heading">
-
-                <div class="section-label">
-                    INCIDENT COMMAND // FIELD OPERATIONS
-                </div>
-
-                <h2 class="section-title">
-                    SEARCH AREA
-                </h2>
-
-                <div class="field-subtitle">
-                    HIGHFIELD NEIGHBORHOOD // OPERATIONAL MAP
-                </div>
-
-            </div>
-
-
-            <div class="map-frame">
-
-                <a
-                    class="map-link"
-                    href="highfield-map.png"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Open full-size Highfield Incident field map"
-                >
-
-                    <img
-                        src="highfield-map.png"
-                        alt="Highfield Incident neighborhood scavenger hunt field map"
-                    >
-
-                    <div class="map-expand">
-                        OPEN FULL-SIZE MAP ↗
-                    </div>
-
-                </a>
-
-            </div>
-
-
-            <div class="command-notice">
-
-                <div class="command-icon">
-                    ⚠
-                </div>
-
-                <div class="command-copy">
-
-                    <strong>
-                        FIELD DIRECTIVE // READ BEFORE DEPLOYMENT
-                    </strong>
-
-                    <p>
-                        Report to HQ for team assignment and mission brief.
-                        Follow your assigned route and remain with your team.
-                        Recover evidence only from authorized stations.
-                        Woods, pond areas, private property, and all locations
-                        identified as OUT OF BOUNDS are prohibited.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="map-classification">
-                CASE #103196 //
-                FIELD DOCUMENT 01 //
-                HIGHFIELD INCIDENT COMMAND
-            </div>
-
+        <div class="map-classification">
+            CASE #103196 //
+            FIELD DOCUMENT 01 //
+            HIGHFIELD INCIDENT COMMAND //
+            INVESTIGATION ACTIVE
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <footer>
-        HIGHFIELD INCIDENT COMMAND //
-        CASE #103196 //
-        INVESTIGATION ACTIVE
-    </footer>
+<footer>
+    HIGHFIELD INCIDENT COMMAND //
+    CASE #103196 //
+    OCTOBER 31 //
+    INVESTIGATION ACTIVE
+</footer>
 
 </body>
 </html>
