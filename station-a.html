@@ -1,1 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050302">
 
+<title>Station A | The Highfield Incident</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #030303;
+    --orange: #ff5b24;
+    --red: #d73526;
+    --darkred: #66140c;
+    --bone: #eee2c8;
+    --muted: #9b8c7d;
+    --green: #78a96b;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 15%, rgba(130,35,5,.25), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(90,20,3,.15), transparent 40%),
+        #030303;
+
+    color: var(--bone);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,.025) 3px
+        );
+}
+
+.terminal {
+    width: min(720px, calc(100% - 28px));
+    margin: auto;
+    padding: 42px 0 70px;
+}
+
+.topline {
+    text-align: center;
+    color: var(--orange);
+    font-family: "Courier New", monospace;
+    font-size: .7rem;
+    font-weight: bold;
+    letter-spacing: .18em;
+}
+
+.case-number {
+    margin-top: 13px;
+    text-align: center;
+    color: #766c62;
+    font-family: "Courier New", monospace;
+    font-size: .7rem;
+    letter-spacing: .18em;
+}
+
+.station-letter {
+    width: 92px;
+    height: 92px;
+    margin: 27px auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid var(--red);
+    border-radius: 50%;
+
+    color: var(--bone);
+
+    font-family: Impact, sans-serif;
+    font-size: 4rem;
+
+    box-shadow:
+        0 0 0 6px rgba(120,25,12,.16),
+        0 0 30px rgba(220,45,20,.18);
+}
+
+h1 {
+    text-align: center;
+
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(3.1rem, 12vw, 5.6rem);
+    line-height: .9;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        3px 3px 0 #511306;
+}
+
+h1 span {
+    display: block;
+    color: var(--red);
+}
+
+.subtitle {
+    margin-top: 13px;
+    text-align: center;
+
+    color: #9d8976;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    letter-spacing: .18em;
+}
+
+.directive {
+    margin-top: 35px;
+    padding: 23px;
+
+    background:
+        linear-gradient(145deg, #120b08, #080605);
+
+    border: 1px solid #482519;
+    border-left: 5px solid var(--orange);
+}
+
+.directive strong {
+    display: block;
+    margin-bottom: 10px;
+
+    color: var(--orange);
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    letter-spacing: .13em;
+}
+
+.directive p {
+    color: #cbbda9;
+    line-height: 1.65;
+    font-size: .96rem;
+}
+
+.screen {
+    margin-top: 25px;
+    padding: 27px 22px;
+
+    background:
+        linear-gradient(180deg, #0b0b0a, #060606);
+
+    border: 1px solid #383029;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.55);
+}
+
+.step {
+    color: #766b61;
+
+    font-family: "Courier New", monospace;
+    font-size: .66rem;
+    letter-spacing: .15em;
+}
+
+.question {
+    margin-top: 10px;
+
+    color: var(--bone);
+
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.45;
+}
+
+.evidence-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 11px;
+    margin-top: 23px;
+}
+
+button {
+    width: 100%;
+    padding: 16px 14px;
+
+    cursor: pointer;
+
+    background: #100b08;
+    border: 1px solid #59301f;
+
+    color: #d9cbb7;
+
+    font-family: "Courier New", monospace;
+    font-size: .84rem;
+    font-weight: bold;
+    letter-spacing: .06em;
+
+    transition: .18s ease;
+}
+
+button:hover,
+button:active {
+    background: #291008;
+    border-color: var(--orange);
+    color: white;
+}
+
+.result {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+
+    font-family: "Courier New", monospace;
+    line-height: 1.6;
+}
+
+.result.bad {
+    display: block;
+
+    background: #170605;
+    border: 1px solid #681d15;
+
+    color: #ff7669;
+}
+
+.result.good {
+    display: block;
+
+    background: #091208;
+    border: 1px solid #385a32;
+
+    color: #9ed08e;
+}
+
+.hidden {
+    display: none;
+}
+
+/* TAG INPUT */
+
+.tag-input {
+    width: 100%;
+    margin-top: 22px;
+    padding: 17px;
+
+    background: #050505;
+
+    border: 1px solid #64301d;
+    border-radius: 0;
+
+    color: var(--bone);
+
+    text-align: center;
+
+    font-family: "Courier New", monospace;
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: .12em;
+
+    outline: none;
+
+    text-transform: uppercase;
+}
+
+.tag-input:focus {
+    border-color: var(--orange);
+
+    box-shadow:
+        0 0 15px rgba(255,90,25,.12);
+}
+
+.submit {
+    margin-top: 12px;
+
+    background:
+        linear-gradient(180deg, #b93712, #721c08);
+
+    border: 1px solid #e45b2c;
+
+    color: white;
+}
+
+/* SUCCESS */
+
+.success {
+    display: none;
+    margin-top: 26px;
+    padding: 30px 22px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(circle at 50% 20%, rgba(82,130,60,.15), transparent 45%),
+        #070a06;
+
+    border: 1px solid #49663e;
+}
+
+.success.active {
+    display: block;
+}
+
+.success-label {
+    color: #8bc879;
+
+    font-family: "Courier New", monospace;
+    font-size: .7rem;
+    font-weight: bold;
+    letter-spacing: .17em;
+}
+
+.success h2 {
+    margin-top: 10px;
+
+    color: #dce9d6;
+
+    font-family: Impact, sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: .04em;
+}
+
+.unaccounted {
+    margin-top: 17px;
+    padding: 14px;
+
+    border: 1px solid #3e5737;
+    background: #0b1109;
+
+    color: #a8d198;
+
+    font-family: "Courier New", monospace;
+    font-size: .76rem;
+    line-height: 1.7;
+}
+
+.recovery {
+    margin-top: 25px;
+    padding: 21px;
+
+    background: #130a05;
+    border: 1px solid #76331b;
+}
+
+.recovery small {
+    display: block;
+
+    color: var(--orange);
+
+    font-family: "Courier New", monospace;
+    letter-spacing: .15em;
+}
+
+.locker {
+    margin-top: 10px;
+
+    color: var(--bone);
+
+    font-family: Impact, sans-serif;
+    font-size: 2.4rem;
+}
+
+.code {
+    margin-top: 6px;
+
+    color: #ff6a30;
+
+    font-family: "Courier New", monospace;
+    font-size: 1.35rem;
+    font-weight: bold;
+    letter-spacing: .15em;
+}
+
+.instructions {
+    margin-top: 18px;
+
+    color: #c5b8a5;
+    line-height: 1.65;
+}
+
+.warning {
+    margin-top: 20px;
+
+    color: #d95345;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    line-height: 1.6;
+}
+
+.hint-area {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.hint-button {
+    width: auto;
+    padding: 10px 15px;
+
+    background: transparent;
+
+    border: 1px solid #39312a;
+
+    color: #71675e;
+
+    font-size: .67rem;
+}
+
+.hint {
+    display: none;
+
+    margin-top: 13px;
+    padding: 14px;
+
+    background: #090807;
+    border: 1px dashed #49372b;
+
+    color: #9f9182;
+
+    font-family: "Courier New", monospace;
+    font-size: .74rem;
+    line-height: 1.6;
+}
+
+.footer {
+    margin-top: 38px;
+
+    text-align: center;
+
+    color: #443d37;
+
+    font-family: "Courier New", monospace;
+    font-size: .6rem;
+    letter-spacing: .14em;
+}
+
+/* MOBILE */
+
+@media (min-width: 600px) {
+
+    .evidence-options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="topline">
+        HIGHFIELD INCIDENT COMMAND // FIELD TERMINAL
+    </div>
+
+    <div class="case-number">
+        CASE #103196 // STATION A
+    </div>
+
+    <div class="station-letter">
+        A
+    </div>
+
+    <h1>
+        THE
+        <span>CRIME SCENE</span>
+    </h1>
+
+    <div class="subtitle">
+        ORIGINAL RECOVERY SITE // 10.31.1996
+    </div>
+
+
+    <div class="directive">
+
+        <strong>
+            ⚠ FIELD INSTRUCTION
+        </strong>
+
+        <p>
+            Examine the physical evidence at Station A before continuing.
+            Compare what you observe with the surviving information from
+            the original 1996 investigation.
+        </p>
+
+    </div>
+
+
+    <!-- STEP ONE -->
+
+    <div
+        id="step1"
+        class="screen"
+    >
+
+        <div class="step">
+            VALIDATION 01 // EVIDENCE DISCREPANCY
+        </div>
+
+        <div class="question">
+            Which object at the scene contradicts the original
+            1996 evidence record?
+        </div>
+
+
+        <div class="evidence-options">
+
+            <button onclick="wrongAnswer()">
+                FLASHLIGHT
+            </button>
+
+            <button onclick="wrongAnswer()">
+                CASSETTE TAPE
+            </button>
+
+            <button onclick="correctObject()">
+                BRASS KEY
+            </button>
+
+            <button onclick="wrongAnswer()">
+                PHOTOGRAPH
+            </button>
+
+            <button onclick="wrongAnswer()">
+                WALLET
+            </button>
+
+            <button onclick="wrongAnswer()">
+                LANTERN MATCHBOOK
+            </button>
+
+        </div>
+
+
+        <div
+            id="result1"
+            class="result"
+        ></div>
+
+
+        <div class="hint-area">
+
+            <button
+                class="hint-button"
+                onclick="showHint1()"
+            >
+                REQUEST HINT 01
+            </button>
+
+            <div
+                id="hint1"
+                class="hint"
+            >
+                Look at the evidence tags.
+                Compare them carefully with what the original record
+                says was — and was not — documented.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STEP TWO -->
+
+    <div
+        id="step2"
+        class="screen hidden"
+    >
+
+        <div class="step">
+            VALIDATION 02 // DOCUMENTATION CHECK
+        </div>
+
+        <div class="question">
+            The original report states the brass key had
+            <strong>NO TAG ATTACHED.</strong>
+            <br><br>
+            What evidence tag is attached to the key at the scene now?
+        </div>
+
+
+        <input
+            id="tagAnswer"
+            class="tag-input"
+            type="text"
+            maxlength="6"
+            autocomplete="off"
+            placeholder="ENTER TAG"
+        >
+
+
+        <button
+            class="submit"
+            onclick="checkTag()"
+        >
+            VALIDATE EVIDENCE
+        </button>
+
+
+        <div
+            id="result2"
+            class="result"
+        ></div>
+
+
+        <div class="hint-area">
+
+            <button
+                class="hint-button"
+                onclick="showHint2()"
+            >
+                REQUEST HINT 02
+            </button>
+
+            <div
+                id="hint2"
+                class="hint"
+            >
+                Return to the brass key.
+                Read the evidence identifier physically attached to it.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+
+    <div
+        id="success"
+        class="success"
+    >
+
+        <div class="success-label">
+            ✓ EVIDENCE VALIDATED // STATION A CLEARED
+        </div>
+
+        <h2>
+            DISCREPANCY CONFIRMED
+        </h2>
+
+
+        <div class="unaccounted">
+
+            ORIGINAL RECORD:<br>
+            BRASS KEY — NO TAG ATTACHED
+            <br><br>
+
+            CURRENT SCENE:<br>
+            BRASS KEY — EVIDENCE TAG E-04
+            <br><br>
+
+            STATUS:<br>
+            <strong>UNACCOUNTED EVIDENCE</strong>
+
+        </div>
+
+
+        <div class="recovery">
+
+            <small>
+                RECOVERY AUTHORIZATION
+            </small>
+
+            <div class="locker">
+                EVIDENCE LOCKER E-04
+            </div>
+
+            <div class="code">
+                ACCESS CODE: 103
+            </div>
+
+        </div>
+
+
+        <div class="instructions">
+
+            Locate Evidence Locker <strong>E-04</strong>.
+            Enter access code <strong>103</strong>.
+            <br><br>
+
+            Retrieve <strong>ONE</strong> sealed
+            <strong>PHOTO FRAGMENT #1</strong>
+            marked for your team.
+            <br><br>
+
+            Keep the fragment with your team's evidence.
+            You will need it later.
+
+        </div>
+
+
+        <div class="warning">
+            ⚠ DO NOT REMOVE ANOTHER TEAM'S EVIDENCE.<br>
+            ⚠ DO NOT DISCARD THE PHOTO FRAGMENT.<br>
+            ⚠ CONTINUE TO YOUR NEXT ASSIGNED STATION.
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        HIGHFIELD INCIDENT COMMAND //
+        FIELD SYSTEM //
+        CASE #103196
+    </div>
+
+</div>
+
+
+<script>
+
+function wrongAnswer() {
+
+    const result = document.getElementById("result1");
+
+    result.className = "result bad";
+
+    result.innerHTML =
+        "✕ EVIDENCE REJECTED<br>" +
+        "That object does not explain the discrepancy.<br>" +
+        "Return to the physical scene and examine the evidence again.";
+}
+
+
+function correctObject() {
+
+    const result = document.getElementById("result1");
+
+    result.className = "result good";
+
+    result.innerHTML =
+        "✓ POSSIBLE DISCREPANCY IDENTIFIED<br>" +
+        "BRASS KEY selected.<br>" +
+        "Secondary validation required.";
+
+    setTimeout(function() {
+
+        document
+            .getElementById("step2")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("step2")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+    }, 800);
+}
+
+
+function checkTag() {
+
+    const input =
+        document
+            .getElementById("tagAnswer")
+            .value
+            .trim()
+            .toUpperCase()
+            .replace(/\s/g, "");
+
+    const result =
+        document.getElementById("result2");
+
+    const acceptedAnswers = [
+        "E-04",
+        "E04",
+        "E4",
+        "E-4"
+    ];
+
+    if (acceptedAnswers.includes(input)) {
+
+        result.className = "result good";
+
+        result.innerHTML =
+            "✓ EVIDENCE IDENTIFIER CONFIRMED<br>" +
+            "Cross-checking original case record...";
+
+        setTimeout(function() {
+
+            document
+                .getElementById("success")
+                .classList.add("active");
+
+            document
+                .getElementById("success")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+        }, 900);
+
+    } else {
+
+        result.className = "result bad";
+
+        result.innerHTML =
+            "✕ IDENTIFIER NOT RECOGNIZED<br>" +
+            "Inspect the tag attached to the brass key and try again.";
+    }
+}
+
+
+function showHint1() {
+
+    document
+        .getElementById("hint1")
+        .style.display = "block";
+}
+
+
+function showHint2() {
+
+    document
+        .getElementById("hint2")
+        .style.display = "block";
+}
+
+
+/* Allow Enter key on evidence-tag field */
+
+document
+    .getElementById("tagAnswer")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            checkTag();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
