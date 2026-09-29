@@ -252,6 +252,7 @@
         .panel {
             position: relative;
             padding: 28px;
+
             background:
                 linear-gradient(
                     145deg,
@@ -307,6 +308,176 @@
             line-height: 1.6;
         }
 
+        /* FIELD OPERATIONS MAP */
+
+        .field-operations {
+            padding: 90px 20px 110px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 25%,
+                    rgba(110, 31, 4, .22),
+                    transparent 40%
+                ),
+                #070707;
+
+            border-top: 1px solid #24140d;
+        }
+
+        .field-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .field-heading .section-label {
+            color: var(--orange);
+        }
+
+        .field-subtitle {
+            color: #8d877d;
+            font-family: "Courier New", monospace;
+            letter-spacing: .15em;
+            font-size: .8rem;
+            margin-top: -20px;
+        }
+
+        .map-frame {
+            position: relative;
+            margin-top: 35px;
+            padding: 9px;
+            background: #080808;
+            border: 1px solid #643019;
+
+            box-shadow:
+                0 0 0 1px #1c100a,
+                0 0 35px rgba(255, 91, 20, .12),
+                0 25px 60px rgba(0,0,0,.75);
+        }
+
+        .map-frame::before {
+            content: "INCIDENT COMMAND // FIELD MAP";
+            position: absolute;
+            z-index: 3;
+            top: 22px;
+            left: 22px;
+
+            background: rgba(5,5,5,.90);
+            border: 1px solid #773319;
+            border-left: 4px solid var(--orange);
+
+            color: #f16a2c;
+            padding: 10px 14px;
+
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            font-size: .7rem;
+            letter-spacing: .13em;
+
+            pointer-events: none;
+        }
+
+        .map-link {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .map-link img {
+            display: block;
+            width: 100%;
+            height: auto;
+
+            transition:
+                transform .35s ease,
+                filter .35s ease;
+
+            filter:
+                contrast(1.04)
+                saturate(.92)
+                brightness(.92);
+        }
+
+        .map-link:hover img {
+            transform: scale(1.012);
+
+            filter:
+                contrast(1.06)
+                saturate(1)
+                brightness(1);
+        }
+
+        .map-expand {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+
+            padding: 10px 14px;
+
+            background: rgba(5,5,5,.92);
+            border: 1px solid #86401e;
+
+            color: #f0dfca;
+
+            font-family: "Courier New", monospace;
+            font-size: .7rem;
+            font-weight: bold;
+            letter-spacing: .1em;
+
+            pointer-events: none;
+        }
+
+        .command-notice {
+            margin-top: 24px;
+
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 18px;
+
+            padding: 22px 24px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #160a06,
+                    #0c0908
+                );
+
+            border: 1px solid #442015;
+            border-left: 4px solid var(--orange);
+        }
+
+        .command-icon {
+            font-size: 1.7rem;
+        }
+
+        .command-copy strong {
+            display: block;
+            margin-bottom: 7px;
+
+            color: var(--orange);
+
+            font-family: "Courier New", monospace;
+            font-size: .75rem;
+            letter-spacing: .16em;
+        }
+
+        .command-copy p {
+            color: #bcb3a6;
+            line-height: 1.65;
+        }
+
+        .map-classification {
+            margin-top: 17px;
+            text-align: center;
+
+            color: #55504b;
+
+            font-family: "Courier New", monospace;
+            font-size: .65rem;
+            letter-spacing: .14em;
+        }
+
         /* FOOTER */
 
         footer {
@@ -320,7 +491,10 @@
             letter-spacing: .16em;
         }
 
+        /* MOBILE */
+
         @media (max-width: 720px) {
+
             .case-grid {
                 grid-template-columns: 1fr;
             }
@@ -331,6 +505,33 @@
 
             .intro {
                 font-size: .95rem;
+            }
+
+            .field-operations {
+                padding: 65px 12px 80px;
+            }
+
+            .map-frame {
+                padding: 5px;
+            }
+
+            .map-frame::before {
+                top: 12px;
+                left: 12px;
+                font-size: .55rem;
+                padding: 7px 9px;
+            }
+
+            .map-expand {
+                right: 10px;
+                bottom: 10px;
+                font-size: .55rem;
+                padding: 7px 9px;
+            }
+
+            .command-notice {
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
         }
     </style>
@@ -506,6 +707,87 @@
         </div>
 
     </main>
+
+
+    <section class="field-operations">
+
+        <div class="container">
+
+            <div class="field-heading">
+
+                <div class="section-label">
+                    INCIDENT COMMAND // FIELD OPERATIONS
+                </div>
+
+                <h2 class="section-title">
+                    SEARCH AREA
+                </h2>
+
+                <div class="field-subtitle">
+                    HIGHFIELD NEIGHBORHOOD // OPERATIONAL MAP
+                </div>
+
+            </div>
+
+
+            <div class="map-frame">
+
+                <a
+                    class="map-link"
+                    href="highfield-map.png"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open full-size Highfield Incident field map"
+                >
+
+                    <img
+                        src="highfield-map.png"
+                        alt="Highfield Incident neighborhood scavenger hunt field map"
+                    >
+
+                    <div class="map-expand">
+                        OPEN FULL-SIZE MAP ↗
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="command-notice">
+
+                <div class="command-icon">
+                    ⚠
+                </div>
+
+                <div class="command-copy">
+
+                    <strong>
+                        FIELD DIRECTIVE // READ BEFORE DEPLOYMENT
+                    </strong>
+
+                    <p>
+                        Report to HQ for team assignment and mission brief.
+                        Follow your assigned route and remain with your team.
+                        Recover evidence only from authorized stations.
+                        Woods, pond areas, private property, and all locations
+                        identified as OUT OF BOUNDS are prohibited.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="map-classification">
+                CASE #103196 //
+                FIELD DOCUMENT 01 //
+                HIGHFIELD INCIDENT COMMAND
+            </div>
+
+        </div>
+
+    </section>
 
 
     <footer>
