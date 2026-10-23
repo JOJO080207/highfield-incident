@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050302">
+
+<title>Station B | The Highfield Incident</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #030303;
+    --orange: #ff5b24;
+    --yellow: #e0b52f;
+    --darkyellow: #735b12;
+    --bone: #eee2c8;
+    --muted: #9b8c7d;
+    --green: #78a96b;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 15%, rgba(120,95,10,.25), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(70,55,5,.15), transparent 40%),
+        #030303;
+
+    color: var(--bone);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,.025) 3px
+        );
+}
+
+.terminal {
+    width: min(720px, calc(100% - 28px));
+    margin: auto;
+    padding: 42px 0 70px;
+}
+
+.topline {
+    text-align: center;
+    color: var(--yellow);
+    font-family: "Courier New", monospace;
+    font-size: .7rem;
+    font-weight: bold;
+    letter-spacing: .18em;
+}
+
+.case-number {
+    margin-top: 13px;
+    text-align: center;
+    color: #766c62;
+    font-family: "Courier New", monospace;
+    font-size: .7rem;
+    letter-spacing: .18em;
+}
+
+.station-letter {
+    width: 92px;
+    height: 92px;
+    margin: 27px auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid var(--yellow);
+    border-radius: 50%;
+
+    color: var(--bone);
+
+    font-family: Impact, sans-serif;
+    font-size: 4rem;
+
+    box-shadow:
+        0 0 0 6px rgba(120,95,10,.16),
+        0 0 30px rgba(220,180,20,.18);
+}
+
+h1 {
+    text-align: center;
+
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(3.1rem, 12vw, 5.6rem);
+    line-height: .9;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        3px 3px 0 #4d3c08;
+}
+
+h1 span {
+    display: block;
+    color: var(--yellow);
+}
+
+.subtitle {
+    margin-top: 13px;
+    text-align: center;
+
+    color: #9d8976;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    letter-spacing: .15em;
+}
+
+.directive {
+    margin-top: 30px;
+    padding: 20px 21px;
+
+    background: #130f05;
+    border: 1px solid #665014;
+
+    line-height: 1.6;
+}
+
+.directive strong {
+    display: block;
+
+    color: var(--yellow);
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    letter-spacing: .15em;
+    margin-bottom: 9px;
+}
+
+.directive p {
+    color: #c5b8a5;
+}
+
+.screen {
+    margin-top: 22px;
+
+    padding: 23px;
+
+    background: #0c0c0c;
+    border: 1px solid #29241a;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35);
+}
+
+.step {
+    color: var(--yellow);
+
+    font-family: "Courier New", monospace;
+    font-size: .68rem;
+    font-weight: bold;
+    letter-spacing: .14em;
+}
+
+.question {
+    margin-top: 14px;
+
+    color: var(--bone);
+
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.choices {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button,
+input {
+    width: 100%;
+    padding: 15px;
+
+    background: #090909;
+
+    border: 1px solid #3c3525;
+
+    color: var(--bone);
+
+    font-family: "Courier New", monospace;
+    font-size: .85rem;
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: var(--yellow);
+}
+
+button.bad {
+    border-color: #a52c20;
+    color: #d95345;
+}
+
+.submit {
+    margin-top: 12px;
+
+    background: #1a1608;
+    border-color: var(--yellow);
+    color: var(--yellow);
+}
+
+.feedback {
+    margin-top: 15px;
+
+    color: #d95345;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    line-height: 1.5;
+}
+
+.success {
+    border-color: #5e4d12;
+}
+
+.success h2 {
+    margin-top: 10px;
+
+    color: var(--bone);
+
+    font-family: Impact, sans-serif;
+    font-size: 2rem;
+    letter-spacing: .04em;
+}
+
+.success p {
+    margin-top: 14px;
+
+    color: #c5b8a5;
+
+    line-height: 1.65;
+}
+
+.bigcode {
+    margin-top: 12px;
+
+    text-align: center;
+
+    color: var(--yellow);
+
+    font-family: "Courier New", monospace;
+    font-size: 2.8rem;
+    font-weight: bold;
+    letter-spacing: .25em;
+}
+
+hr {
+    margin: 25px 0;
+
+    border: 0;
+    border-top: 1px solid #332d20;
+}
+
+.label {
+    color: var(--yellow) !important;
+
+    font-family: "Courier New", monospace;
+    font-size: .68rem;
+    font-weight: bold;
+    letter-spacing: .15em;
+}
+
+.locker {
+    margin-top: 10px;
+
+    color: var(--bone);
+
+    font-family: Impact, sans-serif;
+    font-size: 2.3rem;
+}
+
+.warning {
+    margin-top: 20px;
+
+    color: #d95345 !important;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.footer {
+    margin-top: 38px;
+
+    text-align: center;
+
+    color: #443d37;
+
+    font-family: "Courier New", monospace;
+    font-size: .6rem;
+    letter-spacing: .14em;
+}
+
+.hint-area {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.hint-button {
+    width: auto;
+    padding: 9px 14px;
+
+    background: transparent;
+
+    border: 1px solid #39312a;
+
+    color: #71675e;
+
+    font-size: .65rem;
+}
+
+.hint {
+    display: none;
+
+    margin-top: 12px;
+    padding: 13px;
+
+    background: #080808;
+    border: 1px dashed #493d20;
+
+    color: #9f9182;
+
+    font-family: "Courier New", monospace;
+    font-size: .72rem;
+    line-height: 1.6;
+}
+
+@media (min-width: 600px) {
+    .choices {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="topline">
+        HIGHFIELD INCIDENT COMMAND // FIELD TERMINAL
+    </div>
+
+    <div class="case-number">
+        CASE #103196 // STATION B
+    </div>
+
+    <div class="station-letter">
+        B
+    </div>
+
+    <h1>
+        THE
+        <span>CIPHER</span>
+    </h1>
+
+    <div class="subtitle">
+        RECOVERED VEHICLE // UNKNOWN RIDER
+    </div>
+
+    <div class="directive">
+
+        <strong>
+            ⚠ FIELD INSTRUCTION
+        </strong>
+
+        <p>
+            A vehicle was recovered near Highfield on the night of
+            October 31, 1996. The rider disappeared.
+            Examine the vehicle at Station B carefully.
+            Three clues will reveal the combination to Evidence Locker B.
+        </p>
+
+    </div>
+
+
+    <!-- STEP ONE -->
+
+    <section id="step1" class="screen">
+
+        <div class="step">
+            VALIDATION 01 // VEHICLE IDENTIFICATION
+        </div>
+
+        <div class="question">
+            How many wheels does the recovered Razor have?
+        </div>
+
+        <div class="choices">
+
+            <button onclick="wrongAnswer('result1', this)">
+                2
+            </button>
+
+            <button onclick="wrongAnswer('result1', this)">
+                3
+            </button>
+
+            <button onclick="correctOne()">
+                4
+            </button>
+
+            <button onclick="wrongAnswer('result1', this)">
+                6
+            </button>
+
+        </div>
+
+        <div id="result1" class="feedback"></div>
+
+        <div class="hint-area">
+
+            <button
+                class="hint-button"
+                onclick="showHint('hint1')">
+                NEED A HINT?
+            </button>
+
+            <div id="hint1" class="hint">
+                Look closely at the recovered vehicle.
+                Count every wheel.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STEP TWO -->
+
+    <section id="step2" class="screen hidden">
+
+        <div class="step">
+            VALIDATION 02 // VEHICLE MARKING
+        </div>
+
+        <div class="question">
+            The vehicle is marked RAZOR.
+            How many letters are in the word?
+        </div>
+
+        <input
+            id="answer2"
+            autocomplete="off"
+            placeholder="ENTER NUMBER">
+
+        <button
+            class="submit"
+            onclick="checkSecond()">
+            VERIFY CLUE
+        </button>
+
+        <div id="result2" class="feedback"></div>
+
+        <div class="hint-area">
+
+            <button
+                class="hint-button"
+                onclick="showHint('hint2')">
+                NEED A HINT?
+            </button>
+
+            <div id="hint2" class="hint">
+                Count the letters:
+                R — A — Z — O — R
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STEP THREE -->
+
+    <section id="step3" class="screen hidden">
+
+        <div class="step">
+            VALIDATION 03 // CIPHER IDENTIFIER
+        </div>
+
+        <div class="question">
+            The recovered message is identified as a CIPHER.
+            How many letters are in the word?
+        </div>
+
+        <input
+            id="answer3"
+            autocomplete="off"
+            placeholder="ENTER NUMBER">
+
+        <button
+            class="submit"
+            onclick="checkThird()">
+            VERIFY FINAL CLUE
+        </button>
+
+        <div id="result3" class="feedback"></div>
+
+        <div class="hint-area">
+
+            <button
+                class="hint-button"
+                onclick="showHint('hint3')">
+                NEED A HINT?
+            </button>
+
+            <div id="hint3" class="hint">
+                Count the letters:
+                C — I — P — H — E — R
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUCCESS -->
+
+    <section id="success" class="screen success hidden">
+
+        <div class="step">
+            EVIDENCE LOCKER AUTHORIZED
+        </div>
+
+        <h2>
+            COMBINATION VERIFIED
+        </h2>
+
+        <p>
+            The three recovered numbers have been assembled
+            in the order they were discovered.
+        </p>
+
+        <div class="bigcode">
+            456
+        </div>
+
+        <hr>
+
+        <div class="label">
+            RECOVERY INSTRUCTION
+        </div>
+
+        <div class="locker">
+            EVIDENCE LOCKER B
+        </div>
+
+        <p>
+            Use the combination above to open the physical
+            Evidence Locker at Station B.
+        </p>
+
+        <div class="label" style="margin-top:20px;">
+            RECOVER
+        </div>
+
+        <p>
+            Take ONLY your team's sealed
+            <strong>PHOTO FRAGMENT #2</strong>.
+            Leave all other team evidence in place.
+        </p>
+
+        <p class="warning">
+            EVIDENCE CONTROL // DO NOT REMOVE ANOTHER TEAM'S EVIDENCE
+        </p>
+
+    </section>
+
+
+    <div class="footer">
+        HIGHFIELD INCIDENT // INCIDENT COMMAND
+    </div>
+
+</div>
+
+
+<script>
+
+function wrongAnswer(id, el) {
+
+    document
+        .querySelectorAll('#step1 .choices button')
+        .forEach(button => button.classList.remove('bad'));
+
+    el.classList.add('bad');
+
+    document.getElementById(id).textContent =
+        "INCORRECT. Re-examine the recovered vehicle.";
+
+}
+
+
+function correctOne() {
+
+    document.getElementById('result1').textContent =
+        "CLUE VERIFIED. FIRST NUMBER RECOVERED: 4";
+
+    setTimeout(() => {
+
+        document.getElementById('step1')
+            .classList.add('hidden');
+
+        document.getElementById('step2')
+            .classList.remove('hidden');
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+    }, 700);
+
+}
+
+
+function checkSecond() {
+
+    let value =
+        document.getElementById('answer2')
+        .value
+        .trim();
+
+    if (value === '5') {
+
+        document.getElementById('result2').textContent =
+            "CLUE VERIFIED. SECOND NUMBER RECOVERED: 5";
+
+        setTimeout(() => {
+
+            document.getElementById('step2')
+                .classList.add('hidden');
+
+            document.getElementById('step3')
+                .classList.remove('hidden');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }, 700);
+
+    } else {
+
+        document.getElementById('result2').textContent =
+            "NUMBER NOT VERIFIED. Count the letters in RAZOR.";
+
+    }
+
+}
+
+
+function checkThird() {
+
+    let value =
+        document.getElementById('answer3')
+        .value
+        .trim();
+
+    if (value === '6') {
+
+        document.getElementById('step3')
+            .classList.add('hidden');
+
+        document.getElementById('success')
+            .classList.remove('hidden');
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+    } else {
+
+        document.getElementById('result3').textContent =
+            "NUMBER NOT VERIFIED. Count the letters in CIPHER.";
+
+    }
+
+}
+
+
+function showHint(id) {
+
+    let element =
+        document.getElementById(id);
+
+    element.style.display =
+        element.style.display === 'block'
+        ? 'none'
+        : 'block';
+
+}
+
+
+document.getElementById('answer2')
+    .addEventListener('keydown', function(event) {
+
+        if (event.key === 'Enter') {
+            checkSecond();
+        }
+
+    });
+
+
+document.getElementById('answer3')
+    .addEventListener('keydown', function(event) {
+
+        if (event.key === 'Enter') {
+            checkThird();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
