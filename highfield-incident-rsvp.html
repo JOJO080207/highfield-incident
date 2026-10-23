@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070707">
+<meta name="description" content="The Highfield Incident — official neighborhood scavenger hunt invitation and RSVP.">
+<title>The Highfield Incident | RSVP</title>
+
+<style>
+:root{
+  --black:#050505;
+  --panel:#0d0b0a;
+  --panel2:#14100e;
+  --red:#e52b20;
+  --red2:#ff4a2f;
+  --orange:#ff6a2a;
+  --gold:#e2b84b;
+  --cream:#f3ead7;
+  --muted:#a99d8f;
+  --line:#3a2119;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(160,30,15,.20),transparent 32%),
+    linear-gradient(180deg,#030303,#0a0706 55%,#030303);
+  color:var(--cream);
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.12;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 3px,
+      rgba(255,255,255,.025) 4px
+    );
+  z-index:20;
+}
+
+.wrap{
+  width:min(1120px,92%);
+  margin:auto;
+}
+
+/* HERO */
+
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+
+header:before,
+header:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+}
+
+header:before{
+  width:900px;
+  height:300px;
+  background:var(--red);
+  opacity:.10;
+  transform:rotate(-18deg);
+  top:-120px;
+  left:-250px;
+  filter:blur(3px);
+}
+
+header:after{
+  width:700px;
+  height:260px;
+  background:var(--orange);
+  opacity:.08;
+  transform:rotate(18deg);
+  right:-240px;
+  bottom:-100px;
+}
+
+.kicker{
+  color:var(--orange);
+  font:700 12px/1.5 "Courier New",monospace;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.case{
+  color:#75695f;
+  font:700 11px/1.5 "Courier New",monospace;
+  letter-spacing:.22em;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:clamp(4rem,12vw,9.5rem);
+  line-height:.78;
+  letter-spacing:-.07em;
+  text-transform:uppercase;
+  color:#fff;
+  text-shadow:
+    8px 10px 0 #000,
+    0 0 30px rgba(255,45,25,.18);
+}
+
+h1 span{
+  display:block;
+  color:var(--red);
+  font-size:.68em;
+  letter-spacing:-.06em;
+}
+
+.subtitle{
+  margin:28px auto 0;
+  max-width:760px;
+  font-size:clamp(1rem,2.2vw,1.35rem);
+  color:#c8bcad;
+  line-height:1.7;
+}
+
+.date{
+  display:inline-block;
+  margin-top:28px;
+  padding:12px 18px;
+  border:1px solid #633023;
+  background:rgba(0,0,0,.55);
+  color:var(--gold);
+  font:700 13px "Courier New",monospace;
+  letter-spacing:.12em;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:32px;
+  padding:16px 28px;
+  background:var(--red);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:1px solid #ff6750;
+  box-shadow:
+    0 0 0 4px rgba(229,43,32,.08),
+    0 12px 35px rgba(0,0,0,.45);
+  transition:.2s;
+}
+
+.cta:hover{
+  transform:translateY(-2px);
+  background:var(--red2);
+}
+
+/* SECTIONS */
+
+section{
+  padding:80px 0;
+}
+
+.section-label{
+  color:var(--orange);
+  font:700 11px "Courier New",monospace;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+h2{
+  font-size:clamp(2rem,5vw,4rem);
+  text-transform:uppercase;
+  letter-spacing:-.035em;
+  margin-bottom:18px;
+}
+
+/* STORY */
+
+.story{
+  display:grid;
+  grid-template-columns:1.35fr .65fr;
+  gap:22px;
+}
+
+.card{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,16,14,.98),
+      rgba(8,7,6,.98)
+    );
+  border:1px solid var(--line);
+  padding:30px;
+  position:relative;
+  box-shadow:0 20px 55px rgba(0,0,0,.35);
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:80px;
+  height:3px;
+  background:var(--red);
+}
+
+.story p{
+  color:#c2b7aa;
+  line-height:1.85;
+  font-size:1.05rem;
+}
+
+.brief-list{
+  list-style:none;
+  display:grid;
+  gap:13px;
+}
+
+.brief-list li{
+  padding:13px 0;
+  border-bottom:1px solid #2b1b16;
+  color:#d4c8b8;
+}
+
+.brief-list b{
+  color:var(--gold);
+}
+
+/* MAP */
+
+.map-card{
+  padding:18px;
+  background:#090706;
+  border:1px solid #4a281e;
+  box-shadow:0 25px 70px rgba(0,0,0,.5);
+}
+
+.map-top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:end;
+  padding:6px 6px 18px;
+}
+
+.map-top h2{
+  margin:0;
+  font-size:clamp(2rem,4vw,3.5rem);
+}
+
+.map-meta{
+  text-align:right;
+  color:#81756a;
+  font:700 10px/1.6 "Courier New",monospace;
+  letter-spacing:.13em;
+}
+
+.map-frame{
+  padding:7px;
+  background:#020202;
+  border:1px solid #2e1d18;
+}
+
+.map-frame img{
+  display:block;
+  width:100%;
+  height:auto;
+  border:1px solid #21130f;
+}
+
+.map-note{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:10px;
+  padding:14px 6px 3px;
+  color:#9d9184;
+  font:700 10px "Courier New",monospace;
+  letter-spacing:.1em;
+}
+
+.map-note strong{
+  color:var(--gold);
+}
+
+/* RSVP */
+
+.rsvp-shell{
+  max-width:900px;
+  margin:auto;
+}
+
+.rsvp-card{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(24,17,14,.98),
+      rgba(8,7,6,.98)
+    );
+  border:1px solid #5b2a20;
+  padding:34px;
+  box-shadow:0 25px 80px rgba(0,0,0,.55);
+}
+
+.notice{
+  border-left:4px solid var(--orange);
+  background:#100b09;
+  padding:16px 18px;
+  color:#cfc2b4;
+  line-height:1.6;
+  margin-bottom:28px;
+}
+
+form{
+  display:grid;
+  gap:18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.field{
+  display:grid;
+  gap:8px;
+}
+
+label{
+  color:var(--gold);
+  font:700 10px "Courier New",monospace;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  background:#070606;
+  color:#f4ecdf;
+  border:1px solid #4a2a20;
+  padding:14px;
+  font:500 15px Arial,sans-serif;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--orange);
+  box-shadow:0 0 0 2px rgba(255,106,42,.1);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.checkbox{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  color:#b9ad9f;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.checkbox input{
+  width:auto;
+  margin-top:4px;
+}
+
+.submit{
+  cursor:pointer;
+  border:1px solid #ff684f;
+  background:var(--red);
+  color:white;
+  padding:17px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:15px;
+}
+
+.submit:hover{
+  background:var(--red2);
+}
+
+/* CONFIRMATION */
+
+#confirmation{
+  display:none;
+  margin-top:24px;
+  border:1px solid #66501d;
+  background:#121009;
+  padding:22px;
+  text-align:center;
+}
+
+#confirmation h3{
+  color:var(--gold);
+  font-size:1.8rem;
+  margin-bottom:8px;
+}
+
+#confirmation p{
+  color:#bdb1a4;
+  line-height:1.6;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:40px 0 55px;
+  text-align:center;
+  color:#665d56;
+  font:700 10px "Courier New",monospace;
+  letter-spacing:.12em;
+}
+
+/* MOBILE */
+
+@media(max-width:760px){
+
+  section{
+    padding:55px 0;
+  }
+
+  .story,
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card,
+  .rsvp-card{
+    padding:22px;
+  }
+
+  .map-top{
+    align-items:flex-start;
+  }
+
+  .map-meta{
+    font-size:8px;
+  }
+
+  .map-note{
+    display:grid;
+  }
+
+  h1{
+    font-size:clamp(3.5rem,17vw,6rem);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<header>
+
+  <div class="wrap">
+
+    <div class="kicker">
+      Field Document // Official Invitation
+    </div>
+
+    <div class="case">
+      CASE #103196 // HIGHFIELD INCIDENT
+    </div>
+
+    <h1>
+      THE HIGHFIELD
+      <span>INCIDENT</span>
+    </h1>
+
+    <p class="subtitle">
+      Something happened in Highfield on Halloween night.
+      The evidence is scattered. The trail is waiting.
+      Your team has been called in.
+    </p>
+
+    <div class="date">
+      OCTOBER 31, 2026
+      &nbsp; // &nbsp;
+      7:00 PM–9:00 PM
+    </div>
+
+    <br>
+
+    <a class="cta" href="#rsvp">
+      Accept the Mission
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- MISSION BRIEFING -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="section-label">
+      01 // Mission Briefing
+    </div>
+
+    <h2>
+      You Have Been Selected.
+    </h2>
+
+    <div class="story">
+
+      <div class="card">
+
+        <p>
+          On October 31st, teams will enter the Highfield search area to
+          recover evidence, solve the mystery, and follow the trail left
+          behind by the original incident.
+        </p>
+
+        <br>
+
+        <p>
+          This is not a race. It is an investigation. Stay together,
+          follow the streets, recover the evidence, and keep your eyes open.
+          Every station contains another piece of the case.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <ul class="brief-list">
+
+          <li>
+            <b>DATE:</b> October 31st
+          </li>
+
+          <li>
+            <b>TIME:</b> 7:00 PM–9:00 PM
+          </li>
+
+          <li>
+            <b>TEAMS:</b> 3–5 teens
+          </li>
+
+          <li>
+            <b>START:</b> HQ
+          </li>
+
+          <li>
+            <b>FINISH:</b> HQ
+          </li>
+
+          <li>
+            <b>MISSION:</b> Recover the evidence
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MAP -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="map-card">
+
+      <div class="map-top">
+
+        <div>
+
+          <div class="section-label">
+            02 // Active Search Grid
+          </div>
+
+          <h2>
+            The Hunt Area
+          </h2>
+
+        </div>
+
+        <div class="map-meta">
+          FIELD COPY<br>
+          CASE #103196<br>
+          10.31.2026
+        </div>
+
+      </div>
+
+
+      <div class="map-frame">
+
+        <img
+          src="highfield-map.png"
+          alt="Official Highfield Incident hunt map"
+        >
+
+      </div>
+
+
+      <div class="map-note">
+
+        <span>
+          <strong>★ HQ</strong>
+          START / FINISH
+        </span>
+
+        <span>
+          A–D STATIONS
+        </span>
+
+        <span>
+          STREETS / SIDEWALKS ONLY
+        </span>
+
+        <span>
+          STAY TOGETHER
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RSVP -->
+
+<section id="rsvp">
+
+  <div class="wrap rsvp-shell">
+
+    <div class="section-label">
+      03 // Personnel Registration
+    </div>
+
+    <h2>
+      RSVP / Join the Investigation
+    </h2>
+
+
+    <div class="rsvp-card">
+
+      <div class="notice">
+
+        Register your team below.
+        One RSVP per participating teen is recommended.
+        Your information is only being used to organize the event.
+
+      </div>
+
+
+      <form id="rsvpForm">
+
+
+        <!-- TEEN -->
+
+        <div class="grid">
+
+          <div class="field">
+
+            <label for="name">
+              Teen Name
+            </label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="First and last name"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="age">
+              Age
+            </label>
+
+            <input
+              id="age"
+              name="age"
+              type="number"
+              min="10"
+              max="18"
+              placeholder="Age"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- PARENT -->
+
+        <div class="grid">
+
+          <div class="field">
+
+            <label for="parent">
+              Parent / Guardian Name
+            </label>
+
+            <input
+              id="parent"
+              name="parent"
+              type="text"
+              placeholder="Parent or guardian"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="phone">
+              Parent / Guardian Phone
+            </label>
+
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="(555) 555-5555"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- TEAM -->
+
+        <div class="grid">
+
+          <div class="field">
+
+            <label for="team">
+              Team Name (Optional)
+            </label>
+
+            <input
+              id="team"
+              name="team"
+              type="text"
+              placeholder="Leave blank if you need a team"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="count">
+              Number Attending
+            </label>
+
+            <select
+              id="count"
+              name="count"
+              required
+            >
+
+              <option value="">
+                Select
+              </option>
+
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <div class="field">
+
+          <label for="notes">
+            Notes / Special Information
+          </label>
+
+          <textarea
+            id="notes"
+            name="notes"
+            placeholder="Anything the event organizers should know?"
+          ></textarea>
+
+        </div>
+
+
+        <!-- AGREEMENT -->
+
+        <label class="checkbox">
+
+          <input
+            type="checkbox"
+            id="agree"
+            required
+          >
+
+          <span>
+            I understand this is a neighborhood scavenger hunt and agree
+            to follow the event rules, stay with the team, and remain on
+            streets/sidewalks unless specifically directed otherwise.
+          </span>
+
+        </label>
+
+
+        <!-- SUBMIT -->
+
+        <button
+          class="submit"
+          type="submit"
+        >
+          Submit Mission RSVP
+        </button>
+
+      </form>
+
+
+      <!-- CONFIRMATION -->
+
+      <div id="confirmation">
+
+        <h3>
+          MISSION RSVP RECEIVED
+        </h3>
+
+        <p>
+          Your registration has been prepared.
+          The investigation begins October 31st at 7:00 PM.
+          Report to HQ for team assignment and briefing.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  THE HIGHFIELD INCIDENT
+  //
+  FIELD OPERATIONS
+  //
+  10.31.2026
+
+</footer>
+
+
+<!-- RSVP SCRIPT -->
+
+<script>
+
+document
+  .getElementById("rsvpForm")
+  .addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const form = e.target;
+
+    const data = new FormData(form);
+
+
+    /*
+      RSVP EMAIL DESTINATION
+    */
+
+    const organizerEmail =
+      "birkheadj@hotmail.com";
+
+
+    const subject =
+      encodeURIComponent(
+        "Highfield Incident RSVP — " +
+        data.get("name")
+      );
+
+
+    const body =
+      encodeURIComponent(
+
+`HIGHFIELD INCIDENT RSVP
+
+Teen Name: ${data.get("name")}
+Age: ${data.get("age")}
+Parent/Guardian: ${data.get("parent")}
+Phone: ${data.get("phone")}
+Team Name: ${data.get("team") || "Needs team assignment"}
+Number Attending: ${data.get("count")}
+
+Notes:
+${data.get("notes") || "None"}
+
+Event:
+October 31, 2026 — 7:00 PM–9:00 PM`
+
+      );
+
+
+    /*
+      OPEN THE VISITOR'S EMAIL APP
+      WITH THE RSVP ALREADY FILLED OUT
+    */
+
+    window.location.href =
+      `mailto:${organizerEmail}?subject=${subject}&body=${body}`;
+
+
+    /*
+      SHOW CONFIRMATION
+    */
+
+    document
+      .getElementById("confirmation")
+      .style.display = "block";
+
+
+    document
+      .getElementById("confirmation")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+  });
+
+</script>
+
+</body>
+</html>
