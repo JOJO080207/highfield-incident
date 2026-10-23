@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,6 @@
     --green: #78a96b;
     --bone: #eee2c8;
     --muted: #9b8c7d;
-    --dark: #0b0b0b;
 }
 
 body {
@@ -30,7 +30,6 @@ body {
         radial-gradient(circle at 50% 15%, rgba(90,20,10,.28), transparent 32%),
         radial-gradient(circle at 50% 100%, rgba(50,10,5,.20), transparent 45%),
         #030303;
-
     color: var(--bone);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -41,7 +40,6 @@ body::before {
     inset: 0;
     pointer-events: none;
     opacity: .16;
-
     background:
         repeating-linear-gradient(
             0deg,
@@ -59,9 +57,7 @@ body::before {
 
 .topline {
     text-align: center;
-
     color: var(--orange);
-
     font-family: "Courier New", monospace;
     font-size: .7rem;
     font-weight: bold;
@@ -70,11 +66,8 @@ body::before {
 
 .case-number {
     margin-top: 13px;
-
     text-align: center;
-
     color: #766c62;
-
     font-family: "Courier New", monospace;
     font-size: .7rem;
     letter-spacing: .18em;
@@ -83,21 +76,15 @@ body::before {
 .station-letter {
     width: 92px;
     height: 92px;
-
     margin: 27px auto 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 3px solid var(--red);
     border-radius: 50%;
-
     color: var(--bone);
-
     font-family: Impact, sans-serif;
     font-size: 4rem;
-
     box-shadow:
         0 0 0 6px rgba(120,30,15,.16),
         0 0 30px rgba(220,70,40,.18);
@@ -105,17 +92,12 @@ body::before {
 
 h1 {
     text-align: center;
-
     font-family: Impact, Haettenschweiler,
         "Arial Narrow Bold", sans-serif;
-
     font-size: clamp(3rem, 12vw, 5.5rem);
     line-height: .9;
-
     text-transform: uppercase;
-
-    text-shadow:
-        3px 3px 0 #4d1710;
+    text-shadow: 3px 3px 0 #4d1710;
 }
 
 h1 span {
@@ -125,58 +107,23 @@ h1 span {
 
 .subtitle {
     margin-top: 13px;
-
     text-align: center;
-
     color: #9d8976;
-
     font-family: "Courier New", monospace;
     font-size: .72rem;
     letter-spacing: .15em;
-}
-
-.directive {
-    margin-top: 30px;
-    padding: 22px;
-
-    background: #130a08;
-
-    border: 1px solid #663022;
-
-    line-height: 1.65;
-}
-
-.directive strong {
-    display: block;
-
-    margin-bottom: 10px;
-
-    color: var(--orange);
-
-    font-family: "Courier New", monospace;
-    font-size: .72rem;
-    letter-spacing: .15em;
-}
-
-.directive p {
-    color: #c5b8a5;
 }
 
 .screen {
-    margin-top: 22px;
-    padding: 23px;
-
+    margin-top: 30px;
+    padding: 25px;
     background: #0c0c0c;
-
-    border: 1px solid #29231f;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.35);
+    border: 1px solid #332820;
+    box-shadow: 0 15px 45px rgba(0,0,0,.35);
 }
 
 .step {
     color: var(--orange);
-
     font-family: "Courier New", monospace;
     font-size: .68rem;
     font-weight: bold;
@@ -185,76 +132,56 @@ h1 span {
 
 .question {
     margin-top: 14px;
-
     color: var(--bone);
-
     font-size: 1.18rem;
     font-weight: 700;
-
     line-height: 1.5;
 }
 
 .instruction {
     margin-top: 18px;
-
-    padding: 16px;
-
+    padding: 18px;
     background: #100d0c;
-
     border-left: 3px solid var(--red);
-
     color: #b9aa9d;
-
     font-family: "Courier New", monospace;
     font-size: .78rem;
+    line-height: 1.7;
+}
 
-    line-height: 1.6;
+.instruction strong {
+    color: var(--orange);
 }
 
 input {
     width: 100%;
-
     margin-top: 18px;
     padding: 15px;
-
     background: #080808;
-
     border: 1px solid #40342e;
-
     color: var(--bone);
-
     font-family: "Courier New", monospace;
     font-size: 1rem;
     font-weight: bold;
-
     text-align: center;
 }
 
 input:focus {
     outline: none;
-
     border-color: var(--orange);
-
-    box-shadow:
-        0 0 12px rgba(255,112,64,.15);
+    box-shadow: 0 0 12px rgba(255,112,64,.15);
 }
 
 .submit {
     width: 100%;
-
     margin-top: 12px;
     padding: 15px;
-
     background: #170d09;
-
     border: 1px solid var(--orange);
-
     color: var(--orange);
-
     font-family: "Courier New", monospace;
     font-size: .82rem;
     font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -264,12 +191,9 @@ input:focus {
 
 .feedback {
     margin-top: 15px;
-
     color: #d95345;
-
     font-family: "Courier New", monospace;
     font-size: .72rem;
-
     line-height: 1.5;
 }
 
@@ -279,68 +203,52 @@ input:focus {
 
 .success h2 {
     margin-top: 10px;
-
     color: var(--bone);
-
     font-family: Impact, sans-serif;
     font-size: 2rem;
-
     letter-spacing: .04em;
 }
 
 .success p {
     margin-top: 14px;
-
     color: #c5b8a5;
-
     line-height: 1.65;
 }
 
 .bigcode {
     margin-top: 15px;
-
     text-align: center;
-
     color: var(--green);
-
     font-family: "Courier New", monospace;
     font-size: 2.8rem;
     font-weight: bold;
-
     letter-spacing: .25em;
 }
 
 hr {
     margin: 25px 0;
-
     border: 0;
     border-top: 1px solid #332d28;
 }
 
 .label {
     color: var(--orange);
-
     font-family: "Courier New", monospace;
     font-size: .68rem;
     font-weight: bold;
-
     letter-spacing: .15em;
 }
 
 .locker {
     margin-top: 10px;
-
     color: var(--bone);
-
     font-family: Impact, sans-serif;
     font-size: 2.3rem;
 }
 
 .warning {
     margin-top: 20px;
-
     color: #d95345;
-
     font-family: "Courier New", monospace;
     font-size: .72rem;
 }
@@ -351,14 +259,10 @@ hr {
 
 .footer {
     margin-top: 38px;
-
     text-align: center;
-
     color: #443d37;
-
     font-family: "Courier New", monospace;
     font-size: .6rem;
-
     letter-spacing: .14em;
 }
 </style>
@@ -390,7 +294,7 @@ hr {
     </div>
 
 
-    <!-- INTRODUCTION -->
+    <!-- INTRO -->
 
     <section id="intro" class="screen">
 
@@ -403,7 +307,10 @@ hr {
         </div>
 
         <div class="instruction">
-            The addresses you know are found outside.<br><br>
+
+            The addresses you know are found outside.
+
+            <br><br>
 
             <strong>
                 THIS ADDRESS IS FOUND WITHIN.
@@ -411,9 +318,22 @@ hr {
 
             <br><br>
 
-            Enter the structure.<br>
-            Use your flashlight.<br>
-            Three numbers remain hidden above the doors.
+            Enter the structure.
+
+            <br>
+
+            Use your flashlight.
+
+            <br>
+
+            Search above the doors.
+
+            <br><br>
+
+            Two Belgian license plates remain inside.
+            Find both plates and recover the numbers
+            displayed on them.
+
         </div>
 
         <button
@@ -427,31 +347,49 @@ hr {
     </section>
 
 
-    <!-- NUMBER ONE -->
+    <!-- FIRST PLATE -->
 
     <section id="step1" class="screen hidden">
 
         <div class="step">
-            RECOVERY 01 // FIRST NUMBER
+            RECOVERY 01 // FIRST PLATE
         </div>
 
         <div class="question">
-            Find the first hidden number above one of the doors.
+            Find the first Belgian license plate.
         </div>
 
         <div class="instruction">
-            Search carefully.
+
             Use your flashlight.
-            Record the number exactly as you find it.
+
+            <br><br>
+
+            Look above the doors.
+
+            <br><br>
+
+            One plate reads:
+
+            <br><br>
+
+            <strong>
+                13 - JCBV
+            </strong>
+
+            <br><br>
+
+            Enter the number shown on the plate.
+
         </div>
 
         <input
             id="number1"
             type="text"
             inputmode="numeric"
-            maxlength="1"
+            maxlength="2"
             autocomplete="off"
-            placeholder="ENTER FIRST NUMBER">
+            placeholder="ENTER NUMBER">
 
         <button
             class="submit"
@@ -469,23 +407,37 @@ hr {
     </section>
 
 
-    <!-- NUMBER TWO -->
+    <!-- SECOND PLATE -->
 
     <section id="step2" class="screen hidden">
 
         <div class="step">
-            RECOVERY 02 // SECOND NUMBER
+            RECOVERY 02 // SECOND PLATE
         </div>
 
         <div class="question">
             One number has been recovered.
-            Find the second hidden number.
+            Find the second Belgian plate.
         </div>
 
         <div class="instruction">
-            Continue deeper into the structure.
-            Check above the doors.
-            Do not assume the numbers are together.
+
+            Continue searching above the doors.
+
+            <br><br>
+
+            A second plate reads:
+
+            <br><br>
+
+            <strong>
+                1 - JOLESA
+            </strong>
+
+            <br><br>
+
+            Enter the number shown on the plate.
+
         </div>
 
         <input
@@ -494,7 +446,7 @@ hr {
             inputmode="numeric"
             maxlength="1"
             autocomplete="off"
-            placeholder="ENTER SECOND NUMBER">
+            placeholder="ENTER NUMBER">
 
         <button
             class="submit"
@@ -512,37 +464,55 @@ hr {
     </section>
 
 
-    <!-- NUMBER THREE -->
+    <!-- COMBINE -->
 
     <section id="step3" class="screen hidden">
 
         <div class="step">
-            RECOVERY 03 // FINAL NUMBER
+            EVIDENCE ASSEMBLY // FINAL STEP
         </div>
 
         <div class="question">
             Two numbers recovered.
-            Find the final number.
+            Assemble them in the order discovered.
         </div>
 
         <div class="instruction">
-            Search the remaining doors.
-            The final number completes the evidence locker combination.
+
+            First number:
+
+            <strong>13</strong>
+
+            <br><br>
+
+            Second number:
+
+            <strong>1</strong>
+
+            <br><br>
+
+            Combine them without spaces.
+
+            <br><br>
+
+            Enter the three-digit Evidence Locker
+            combination.
+
         </div>
 
         <input
-            id="number3"
+            id="finalCode"
             type="text"
             inputmode="numeric"
-            maxlength="1"
+            maxlength="3"
             autocomplete="off"
-            placeholder="ENTER FINAL NUMBER">
+            placeholder="ENTER 3-DIGIT CODE">
 
         <button
             class="submit"
-            onclick="checkNumber3()">
+            onclick="checkFinalCode()">
 
-            VERIFY FINAL NUMBER
+            VERIFY COMBINATION
 
         </button>
 
@@ -567,12 +537,12 @@ hr {
         </h2>
 
         <p>
-            Three numbers have been recovered
-            from within the structure.
+            The recovered numbers have been assembled
+            in the order discovered.
         </p>
 
         <div class="bigcode">
-            739
+            131
         </div>
 
         <hr>
@@ -586,8 +556,8 @@ hr {
         </div>
 
         <p>
-            Use the combination above to open
-            the physical Evidence Locker at Station D.
+            Use the combination above to open the
+            physical Evidence Locker at Station D.
         </p>
 
         <hr>
@@ -618,39 +588,18 @@ hr {
 
 <script>
 
-/*
-    TEMPORARY TEST COMBINATION
-
-    Change these three values once you decide
-    the actual numbers hidden inside the pool house.
-*/
-
-const CODE_1 = "7";
-const CODE_2 = "3";
-const CODE_3 = "9";
+const PLATE_ONE = "13";
+const PLATE_TWO = "1";
+const FINAL_CODE = "131";
 
 
 function hideAll() {
 
-    document
-        .getElementById("intro")
-        .classList.add("hidden");
-
-    document
-        .getElementById("step1")
-        .classList.add("hidden");
-
-    document
-        .getElementById("step2")
-        .classList.add("hidden");
-
-    document
-        .getElementById("step3")
-        .classList.add("hidden");
-
-    document
-        .getElementById("success")
-        .classList.add("hidden");
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.add("hidden");
+    document.getElementById("success").classList.add("hidden");
 
 }
 
@@ -679,12 +628,12 @@ function checkNumber1() {
             .value
             .trim();
 
-    if (value === CODE_1) {
+    if (value === PLATE_ONE) {
 
         document
             .getElementById("result1")
             .textContent =
-            "NUMBER VERIFIED. FIRST EVIDENCE RECOVERED.";
+            "PLATE VERIFIED. FIRST NUMBER RECOVERED.";
 
         setTimeout(() => {
 
@@ -721,12 +670,12 @@ function checkNumber2() {
             .value
             .trim();
 
-    if (value === CODE_2) {
+    if (value === PLATE_TWO) {
 
         document
             .getElementById("result2")
             .textContent =
-            "NUMBER VERIFIED. SECOND EVIDENCE RECOVERED.";
+            "PLATE VERIFIED. SECOND NUMBER RECOVERED.";
 
         setTimeout(() => {
 
@@ -755,15 +704,15 @@ function checkNumber2() {
 }
 
 
-function checkNumber3() {
+function checkFinalCode() {
 
     const value =
         document
-            .getElementById("number3")
+            .getElementById("finalCode")
             .value
             .trim();
 
-    if (value === CODE_3) {
+    if (value === FINAL_CODE) {
 
         hideAll();
 
@@ -781,7 +730,7 @@ function checkNumber3() {
         document
             .getElementById("result3")
             .textContent =
-            "NUMBER NOT VERIFIED. SEARCH THE REMAINING DOORS.";
+            "COMBINATION NOT VERIFIED. ASSEMBLE THE NUMBERS AGAIN.";
 
     }
 
@@ -811,11 +760,11 @@ document
 
 
 document
-    .getElementById("number3")
+    .getElementById("finalCode")
     .addEventListener("keydown", function(event) {
 
         if (event.key === "Enter") {
-            checkNumber3();
+            checkFinalCode();
         }
 
     });
@@ -824,3 +773,4 @@ document
 
 </body>
 </html>
+```
