@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,6 +149,23 @@ h1 span{
   letter-spacing:.12em;
 }
 
+.address{
+  display:block;
+  max-width:650px;
+  margin:18px auto 0;
+  padding:14px 20px;
+  border:1px solid #633023;
+  background:rgba(0,0,0,.65);
+  color:var(--cream);
+  font:700 14px/1.6 "Courier New",monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.address strong{
+  color:var(--orange);
+}
+
 .cta{
   display:inline-block;
   margin-top:32px;
@@ -258,7 +276,6 @@ h2{
   justify-content:space-between;
   gap:20px;
   align-items:end;
-  padding:6px 6px 18px;
 }
 
 .map-top h2{
@@ -327,6 +344,35 @@ h2{
   color:#cfc2b4;
   line-height:1.6;
   margin-bottom:28px;
+}
+
+.event-address{
+  margin:-8px 0 28px;
+  padding:18px;
+  background:#0b0807;
+  border:1px solid #633023;
+  text-align:center;
+}
+
+.event-address .label{
+  color:var(--orange);
+  font:700 10px "Courier New",monospace;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.event-address .location{
+  margin-top:8px;
+  color:var(--cream);
+  font-size:1.25rem;
+  font-weight:900;
+}
+
+.event-address .city{
+  margin-top:5px;
+  color:var(--gold);
+  font:700 12px "Courier New",monospace;
+  letter-spacing:.08em;
 }
 
 form{
@@ -472,6 +518,10 @@ footer{
   h1{
     font-size:clamp(3.5rem,17vw,6rem);
   }
+
+  .address{
+    font-size:12px;
+  }
 }
 </style>
 </head>
@@ -507,6 +557,12 @@ footer{
       OCTOBER 31, 2026
       &nbsp; // &nbsp;
       7:00 PM–9:00 PM
+    </div>
+
+    <div class="address">
+      <strong>MISSION HQ / PARTY LOCATION</strong><br>
+      4136 Highfield Dr<br>
+      Grovetown, Georgia
     </div>
 
     <br>
@@ -552,8 +608,16 @@ footer{
           Every station contains another piece of the case.
         </p>
 
-      </div>
+        <br>
 
+        <p>
+          <strong style="color:#e2b84b;">
+            Mission Headquarters:
+          </strong>
+          4136 Highfield Dr, Grovetown, Georgia.
+        </p>
+
+      </div>
 
       <div class="card">
 
@@ -565,6 +629,10 @@ footer{
 
           <li>
             <b>TIME:</b> 7:00 PM–9:00 PM
+          </li>
+
+          <li>
+            <b>LOCATION:</b> 4136 Highfield Dr
           </li>
 
           <li>
@@ -624,7 +692,6 @@ footer{
 
       </div>
 
-
       <div class="map-frame">
 
         <img
@@ -633,7 +700,6 @@ footer{
         >
 
       </div>
-
 
       <div class="map-note">
 
@@ -677,20 +743,31 @@ footer{
       RSVP / Join the Investigation
     </h2>
 
-
     <div class="rsvp-card">
 
       <div class="notice">
-
         Register your team below.
         One RSVP per participating kid is recommended.
         Your information is only being used to organize the event.
+      </div>
+
+      <div class="event-address">
+
+        <div class="label">
+          Event Location
+        </div>
+
+        <div class="location">
+          4136 Highfield Dr
+        </div>
+
+        <div class="city">
+          GROVETOWN, GEORGIA
+        </div>
 
       </div>
 
-
       <form id="rsvpForm">
-
 
         <!-- KID -->
 
@@ -711,7 +788,6 @@ footer{
             >
 
           </div>
-
 
           <div class="field">
 
@@ -754,7 +830,6 @@ footer{
 
           </div>
 
-
           <div class="field">
 
             <label for="phone">
@@ -792,7 +867,6 @@ footer{
             >
 
           </div>
-
 
           <div class="field">
 
@@ -882,7 +956,7 @@ footer{
         <p>
           Your registration has been prepared.
           The investigation begins October 31st at 7:00 PM.
-          Report to HQ for team assignment and briefing.
+          Report to HQ at 4136 Highfield Dr for team assignment and briefing.
         </p>
 
       </div>
@@ -903,6 +977,8 @@ footer{
   FIELD OPERATIONS
   //
   10.31.2026
+  //
+  4136 HIGHFIELD DR
 
 </footer>
 
@@ -920,7 +996,6 @@ document
     const form = e.target;
 
     const data = new FormData(form);
-
 
     /*
       RSVP EMAIL DESTINATION
@@ -953,7 +1028,11 @@ Notes:
 ${data.get("notes") || "None"}
 
 Event:
-October 31, 2026 — 7:00 PM–9:00 PM`
+October 31, 2026 — 7:00 PM–9:00 PM
+
+Location:
+4136 Highfield Dr
+Grovetown, Georgia`
 
       );
 
@@ -989,3 +1068,4 @@ October 31, 2026 — 7:00 PM–9:00 PM`
 
 </body>
 </html>
+```
