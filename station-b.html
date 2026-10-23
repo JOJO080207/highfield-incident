@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -460,17 +461,18 @@ hr {
     <section id="step2" class="screen hidden">
 
         <div class="step">
-            VALIDATION 02 // VEHICLE MARKING
+            VALIDATION 02 // BLACK LIGHT EVIDENCE
         </div>
 
         <div class="question">
-            The vehicle is marked RAZOR.
-            How many letters are in the word?
+            A hidden marking has been placed somewhere on the recovered
+            vehicle. Use the black light to reveal the second number.
         </div>
 
         <input
             id="answer2"
             autocomplete="off"
+            inputmode="numeric"
             placeholder="ENTER NUMBER">
 
         <button
@@ -490,8 +492,8 @@ hr {
             </button>
 
             <div id="hint2" class="hint">
-                Count the letters:
-                R — A — Z — O — R
+                The second number cannot be seen normally.
+                Use the black light and inspect the recovered vehicle carefully.
             </div>
 
         </div>
@@ -515,6 +517,7 @@ hr {
         <input
             id="answer3"
             autocomplete="off"
+            inputmode="numeric"
             placeholder="ENTER NUMBER">
 
         <button
@@ -672,7 +675,7 @@ function checkSecond() {
     } else {
 
         document.getElementById('result2').textContent =
-            "NUMBER NOT VERIFIED. Count the letters in RAZOR.";
+            "NUMBER NOT VERIFIED. Use the black light to inspect the recovered vehicle.";
 
     }
 
@@ -745,3 +748,4 @@ document.getElementById('answer3')
 
 </body>
 </html>
+```
