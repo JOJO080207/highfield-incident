@@ -30,7 +30,6 @@ body {
         radial-gradient(circle at 50% 15%, rgba(130,35,5,.25), transparent 32%),
         radial-gradient(circle at 50% 100%, rgba(90,20,3,.15), transparent 40%),
         #030303;
-
     color: var(--bone);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -41,7 +40,6 @@ body::before {
     inset: 0;
     pointer-events: none;
     opacity: .18;
-
     background:
         repeating-linear-gradient(
             0deg,
@@ -446,7 +444,7 @@ button:active {
     letter-spacing: .14em;
 }
 
-/* MOBILE */
+/* MOBILE / DESKTOP */
 
 @media (min-width: 600px) {
 
@@ -454,6 +452,7 @@ button:active {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 </style>
 </head>
 
@@ -475,13 +474,12 @@ button:active {
 
     <h1>
         THE
-        <span>CRIME SCENE</span>
+        <span>HALLOWEEN RUN</span>
     </h1>
 
     <div class="subtitle">
         ORIGINAL RECOVERY SITE // 10.31.1996
     </div>
-
 
     <div class="directive">
 
@@ -491,8 +489,9 @@ button:active {
 
         <p>
             Examine the physical evidence at Station A before continuing.
-            Compare what you observe with the surviving information from
-            the original 1996 investigation.
+            Something happened on Highfield Halloween night.
+            The surviving evidence may reveal why four kids were still
+            out when they should have been home.
         </p>
 
     </div>
@@ -506,27 +505,26 @@ button:active {
     >
 
         <div class="step">
-            VALIDATION 01 // EVIDENCE DISCREPANCY
+            VALIDATION 01 // CURFEW TIMELINE
         </div>
 
         <div class="question">
-            Which object at the scene contradicts the original
-            1996 evidence record?
+            Which object at the scene provides the strongest clue
+            that the kids were still out when they should have been home?
         </div>
-
 
         <div class="evidence-options">
 
             <button onclick="wrongAnswer()">
-                FLASHLIGHT
-            </button>
-
-            <button onclick="wrongAnswer()">
-                CASSETTE TAPE
+                HALLOWEEN CANDY BAG
             </button>
 
             <button onclick="correctObject()">
-                BRASS KEY
+                WRISTWATCH
+            </button>
+
+            <button onclick="wrongAnswer()">
+                BASKETBALL
             </button>
 
             <button onclick="wrongAnswer()">
@@ -538,17 +536,15 @@ button:active {
             </button>
 
             <button onclick="wrongAnswer()">
-                LANTERN MATCHBOOK
+                BRASS KEY
             </button>
 
         </div>
-
 
         <div
             id="result1"
             class="result"
         ></div>
-
 
         <div class="hint-area">
 
@@ -563,9 +559,8 @@ button:active {
                 id="hint1"
                 class="hint"
             >
-                Look at the evidence tags.
-                Compare them carefully with what the original record
-                says was — and was not — documented.
+                Look for the object that records a time.
+                The time may tell you how late the kids were.
             </div>
 
         </div>
@@ -581,16 +576,20 @@ button:active {
     >
 
         <div class="step">
-            VALIDATION 02 // DOCUMENTATION CHECK
+            VALIDATION 02 // EVIDENCE IDENTIFIER
         </div>
 
         <div class="question">
-            The original report states the brass key had
-            <strong>NO TAG ATTACHED.</strong>
+            The wristwatch establishes that the kids were still
+            out late on Halloween night.
             <br><br>
-            What evidence tag is attached to the key at the scene now?
-        </div>
 
+            Now inspect the physical evidence again.
+            Find the <strong>brass key</strong>.
+            <br><br>
+
+            What evidence tag is attached to the key?
+        </div>
 
         <input
             id="tagAnswer"
@@ -601,7 +600,6 @@ button:active {
             placeholder="ENTER TAG"
         >
 
-
         <button
             class="submit"
             onclick="checkTag()"
@@ -609,12 +607,10 @@ button:active {
             VALIDATE EVIDENCE
         </button>
 
-
         <div
             id="result2"
             class="result"
         ></div>
-
 
         <div class="hint-area">
 
@@ -630,7 +626,7 @@ button:active {
                 class="hint"
             >
                 Return to the brass key.
-                Read the evidence identifier physically attached to it.
+                Look closely at the physical tag attached to it.
             </div>
 
         </div>
@@ -650,25 +646,23 @@ button:active {
         </div>
 
         <h2>
-            DISCREPANCY CONFIRMED
+            CURFEW CLUE CONFIRMED
         </h2>
-
 
         <div class="unaccounted">
 
-            ORIGINAL RECORD:<br>
-            BRASS KEY — NO TAG ATTACHED
+            TIMELINE CLUE:<br>
+            THE WRISTWATCH SHOWS THE KIDS WERE STILL OUT.
             <br><br>
 
-            CURRENT SCENE:<br>
+            PHYSICAL EVIDENCE:<br>
             BRASS KEY — EVIDENCE TAG E-04
             <br><br>
 
             STATUS:<br>
-            <strong>UNACCOUNTED EVIDENCE</strong>
+            <strong>RECOVERY REQUIRED</strong>
 
         </div>
-
 
         <div class="recovery">
 
@@ -686,7 +680,6 @@ button:active {
 
         </div>
 
-
         <div class="instructions">
 
             Locate Evidence Locker <strong>E-04</strong>.
@@ -699,14 +692,15 @@ button:active {
             <br><br>
 
             Keep the fragment with your team's evidence.
-            You will need it later.
+            You will need it later to reconstruct what happened
+            on Highfield.
 
         </div>
-
 
         <div class="warning">
             ⚠ DO NOT REMOVE ANOTHER TEAM'S EVIDENCE.<br>
             ⚠ DO NOT DISCARD THE PHOTO FRAGMENT.<br>
+            ⚠ KEEP YOUR EVIDENCE WITH YOUR TEAM.<br>
             ⚠ CONTINUE TO YOUR NEXT ASSIGNED STATION.
         </div>
 
@@ -732,7 +726,7 @@ function wrongAnswer() {
 
     result.innerHTML =
         "✕ EVIDENCE REJECTED<br>" +
-        "That object does not explain the discrepancy.<br>" +
+        "That object does not establish the curfew timeline.<br>" +
         "Return to the physical scene and examine the evidence again.";
 }
 
@@ -744,8 +738,9 @@ function correctObject() {
     result.className = "result good";
 
     result.innerHTML =
-        "✓ POSSIBLE DISCREPANCY IDENTIFIED<br>" +
-        "BRASS KEY selected.<br>" +
+        "✓ TIMELINE CLUE IDENTIFIED<br>" +
+        "WRISTWATCH selected.<br>" +
+        "The time recorded on the watch establishes that the kids were still out late.<br>" +
         "Secondary validation required.";
 
     setTimeout(function() {
@@ -761,7 +756,7 @@ function correctObject() {
                 block: "start"
             });
 
-    }, 800);
+    }, 900);
 }
 
 
@@ -791,7 +786,8 @@ function checkTag() {
 
         result.innerHTML =
             "✓ EVIDENCE IDENTIFIER CONFIRMED<br>" +
-            "Cross-checking original case record...";
+            "E-04 recognized.<br>" +
+            "Recovery authorization granted.";
 
         setTimeout(function() {
 
@@ -815,6 +811,7 @@ function checkTag() {
         result.innerHTML =
             "✕ IDENTIFIER NOT RECOGNIZED<br>" +
             "Inspect the tag attached to the brass key and try again.";
+
     }
 }
 
@@ -824,6 +821,7 @@ function showHint1() {
     document
         .getElementById("hint1")
         .style.display = "block";
+
 }
 
 
@@ -832,6 +830,7 @@ function showHint2() {
     document
         .getElementById("hint2")
         .style.display = "block";
+
 }
 
 
