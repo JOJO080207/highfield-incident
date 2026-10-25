@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050302">
+<meta name="theme-color" content="#030603">
 
 <title>Station C | The Highfield Incident</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,31 +16,49 @@
 }
 
 :root {
-    --black: #030303;
-    --orange: #ff5b24;
-    --red: #d73526;
-    --darkred: #66140c;
+    --black: #030603;
+    --green: #6fbd68;
+    --bright-green: #8fda82;
+    --dark-green: #193b18;
+    --deep-green: #0c1d0b;
     --bone: #eee2c8;
     --muted: #9b8c7d;
-    --green: #78a96b;
 }
 
 body {
     min-height: 100vh;
+
     background:
-        radial-gradient(circle at 50% 15%, rgba(130,35,5,.25), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(90,20,3,.15), transparent 40%),
-        #030303;
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(45,110,40,.25),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(20,70,18,.18),
+            transparent 40%
+        ),
+        #030603;
+
     color: var(--bone);
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
+
     pointer-events: none;
+
     opacity: .18;
+
     background:
         repeating-linear-gradient(
             0deg,
@@ -49,127 +68,227 @@ body::before {
         );
 }
 
+
+/* MAIN */
+
 .terminal {
     width: min(720px, calc(100% - 28px));
+
     margin: auto;
-    padding: 42px 0 70px;
+
+    padding:
+        42px
+        0
+        70px;
 }
+
+
+/* HEADER */
 
 .topline {
     text-align: center;
-    color: var(--orange);
-    font-family: "Courier New", monospace;
+
+    color: var(--green);
+
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .7rem;
+
     font-weight: bold;
+
     letter-spacing: .18em;
 }
 
 .case-number {
     margin-top: 13px;
+
     text-align: center;
+
     color: #766c62;
-    font-family: "Courier New", monospace;
+
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .7rem;
+
     letter-spacing: .18em;
 }
+
+
+/* STATION C BADGE */
 
 .station-letter {
     width: 92px;
     height: 92px;
-    margin: 27px auto 20px;
+
+    margin:
+        27px
+        auto
+        20px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border: 3px solid var(--red);
+    border:
+        3px solid
+        var(--green);
+
     border-radius: 50%;
 
     color: var(--bone);
 
-    font-family: Impact, sans-serif;
+    font-family:
+        Impact,
+        sans-serif;
+
     font-size: 4rem;
 
     box-shadow:
-        0 0 0 6px rgba(120,25,12,.16),
-        0 0 30px rgba(220,45,20,.18);
+        0 0 0 6px rgba(50,120,45,.16),
+        0 0 30px rgba(70,170,60,.20);
 }
+
+
+/* TITLE */
 
 h1 {
     text-align: center;
 
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    font-size: clamp(3.1rem, 12vw, 5.6rem);
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:
+        clamp(
+            3.1rem,
+            12vw,
+            5.6rem
+        );
+
     line-height: .9;
 
     text-transform: uppercase;
 
     text-shadow:
-        3px 3px 0 #511306;
+        3px 3px 0
+        #163513;
 }
 
 h1 span {
     display: block;
-    color: var(--red);
+
+    color: var(--green);
 }
+
+
+/* SUBTITLE */
 
 .subtitle {
     margin-top: 13px;
+
     text-align: center;
 
     color: #9d8976;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .72rem;
+
     letter-spacing: .18em;
 }
 
+
+/* FIELD INSTRUCTION */
+
 .directive {
     margin-top: 35px;
+
     padding: 23px;
 
     background:
-        linear-gradient(145deg, #120b08, #080605);
+        linear-gradient(
+            145deg,
+            #081108,
+            #050805
+        );
 
-    border: 1px solid #482519;
-    border-left: 5px solid var(--orange);
+    border:
+        1px solid
+        #294927;
+
+    border-left:
+        5px solid
+        var(--green);
 }
 
 .directive strong {
     display: block;
+
     margin-bottom: 10px;
 
-    color: var(--orange);
+    color: var(--green);
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .72rem;
+
     letter-spacing: .13em;
 }
 
 .directive p {
     color: #cbbda9;
+
     line-height: 1.65;
+
     font-size: .96rem;
 }
 
+
+/* QUESTION SCREEN */
+
 .screen {
     margin-top: 25px;
-    padding: 27px 22px;
+
+    padding:
+        27px
+        22px;
 
     background:
-        linear-gradient(180deg, #0b0b0a, #060606);
+        linear-gradient(
+            180deg,
+            #0a0d09,
+            #050705
+        );
 
-    border: 1px solid #383029;
+    border:
+        1px solid
+        #293327;
 
     box-shadow:
-        0 18px 45px rgba(0,0,0,.55);
+        0 18px 45px
+        rgba(0,0,0,.55);
 }
 
 .step {
-    color: #766b61;
+    color: #71816e;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .66rem;
+
     letter-spacing: .15em;
 }
 
@@ -178,89 +297,152 @@ h1 span {
 
     color: var(--bone);
 
-    font-family: Georgia, serif;
+    font-family:
+        Georgia,
+        serif;
+
     font-size: 1.3rem;
+
     line-height: 1.45;
 }
 
+
+/* ANSWER BUTTONS */
+
 .options {
     display: grid;
+
     grid-template-columns: 1fr;
+
     gap: 11px;
+
     margin-top: 23px;
 }
 
 button {
     width: 100%;
-    padding: 16px 14px;
+
+    padding:
+        16px
+        14px;
 
     cursor: pointer;
 
-    background: #100b08;
-    border: 1px solid #59301f;
+    background:
+        #091008;
 
-    color: #d9cbb7;
+    border:
+        1px solid
+        #31532f;
 
-    font-family: "Courier New", monospace;
+    color:
+        #d9cbb7;
+
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .84rem;
+
     font-weight: bold;
+
     letter-spacing: .06em;
 
-    transition: .18s ease;
+    transition:
+        .18s ease;
 }
 
 button:hover,
 button:active {
-    background: #291008;
-    border-color: var(--orange);
-    color: white;
+
+    background:
+        #122611;
+
+    border-color:
+        var(--green);
+
+    color:
+        white;
+
+    box-shadow:
+        0 0 12px
+        rgba(100,190,90,.12);
 }
+
+
+/* RESULTS */
 
 .result {
     display: none;
+
     margin-top: 20px;
+
     padding: 18px;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     line-height: 1.6;
 }
 
 .result.bad {
     display: block;
 
-    background: #170605;
-    border: 1px solid #681d15;
+    background:
+        #160706;
 
-    color: #ff7669;
+    border:
+        1px solid
+        #63201a;
+
+    color:
+        #ff7669;
 }
 
 .result.good {
     display: block;
 
-    background: #091208;
-    border: 1px solid #385a32;
+    background:
+        #081308;
 
-    color: #9ed08e;
+    border:
+        1px solid
+        #3c6738;
+
+    color:
+        #9ed08e;
 }
 
 .hidden {
     display: none;
 }
 
+
 /* SUCCESS */
 
 .success {
     display: none;
+
     margin-top: 26px;
-    padding: 30px 22px;
+
+    padding:
+        30px
+        22px;
 
     text-align: center;
 
     background:
-        radial-gradient(circle at 50% 20%, rgba(82,130,60,.15), transparent 45%),
-        #070a06;
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(82,150,70,.16),
+            transparent 45%
+        ),
+        #070b06;
 
-    border: 1px solid #49663e;
+    border:
+        1px solid
+        #49663e;
 }
 
 .success.active {
@@ -268,170 +450,295 @@ button:active {
 }
 
 .success-label {
-    color: #8bc879;
+    color:
+        var(--bright-green);
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .7rem;
+
     font-weight: bold;
+
     letter-spacing: .17em;
 }
 
 .success h2 {
     margin-top: 10px;
 
-    color: #dce9d6;
+    color:
+        #dce9d6;
 
-    font-family: Impact, sans-serif;
+    font-family:
+        Impact,
+        sans-serif;
+
     font-size: 2.5rem;
+
     letter-spacing: .04em;
 }
 
+
+/* STORY REVEAL */
+
 .unaccounted {
     margin-top: 17px;
+
     padding: 16px;
 
-    border: 1px solid #3e5737;
-    background: #0b1109;
+    border:
+        1px solid
+        #3e5737;
 
-    color: #a8d198;
+    background:
+        #0b1109;
 
-    font-family: "Courier New", monospace;
+    color:
+        #a8d198;
+
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .76rem;
+
     line-height: 1.7;
 }
 
+
+/* LOCKER */
+
 .recovery {
     margin-top: 25px;
+
     padding: 21px;
 
-    background: #130a05;
-    border: 1px solid #76331b;
+    background:
+        #0a1508;
+
+    border:
+        1px solid
+        #47733e;
 }
 
 .recovery small {
     display: block;
 
-    color: var(--orange);
+    color:
+        var(--green);
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     letter-spacing: .15em;
 }
 
 .locker {
     margin-top: 10px;
 
-    color: var(--bone);
+    color:
+        var(--bone);
 
-    font-family: Impact, sans-serif;
+    font-family:
+        Impact,
+        sans-serif;
+
     font-size: 2.4rem;
 }
 
 .code {
     margin-top: 6px;
 
-    color: #ff6a30;
+    color:
+        var(--bright-green);
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: 1.35rem;
+
     font-weight: bold;
+
     letter-spacing: .15em;
 }
+
+
+/* INSTRUCTIONS */
 
 .instructions {
     margin-top: 18px;
 
-    color: #c5b8a5;
+    color:
+        #c5b8a5;
+
     line-height: 1.65;
 }
+
+
+/* WARNING */
 
 .warning {
     margin-top: 20px;
 
-    color: #d95345;
+    color:
+        #d95345;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .72rem;
+
     line-height: 1.6;
 }
 
+
+/* HINT */
+
 .hint-area {
     margin-top: 24px;
+
     text-align: center;
 }
 
 .hint-button {
     width: auto;
-    padding: 10px 15px;
 
-    background: transparent;
+    padding:
+        10px
+        15px;
 
-    border: 1px solid #39312a;
+    background:
+        transparent;
 
-    color: #71675e;
+    border:
+        1px solid
+        #394936;
+
+    color:
+        #71806d;
 
     font-size: .67rem;
+}
+
+.hint-button:hover {
+    border-color:
+        var(--green);
+
+    color:
+        var(--green);
+
+    background:
+        #091109;
 }
 
 .hint {
     display: none;
 
     margin-top: 13px;
+
     padding: 14px;
 
-    background: #090807;
-    border: 1px dashed #49372b;
+    background:
+        #080b07;
 
-    color: #9f9182;
+    border:
+        1px dashed
+        #3c5738;
 
-    font-family: "Courier New", monospace;
+    color:
+        #9f9182;
+
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .74rem;
+
     line-height: 1.6;
 }
+
+
+/* FOOTER */
 
 .footer {
     margin-top: 38px;
 
     text-align: center;
 
-    color: #443d37;
+    color:
+        #443d37;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: .6rem;
+
     letter-spacing: .14em;
 }
 
+
+/* DESKTOP */
+
 @media (min-width: 600px) {
+
     .options {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr
+            1fr;
     }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
+
 <div class="terminal">
+
+
+    <!-- HEADER -->
 
     <div class="topline">
         HIGHFIELD INCIDENT COMMAND // FIELD TERMINAL
     </div>
 
+
     <div class="case-number">
         CASE #103196 // STATION C
     </div>
+
 
     <div class="station-letter">
         C
     </div>
 
+
     <h1>
+
         THE
-        <span>WITNESS</span>
+
+        <span>
+            WITNESS
+        </span>
+
     </h1>
+
 
     <div class="subtitle">
         WITNESS RECOVERY SITE // 10.31.1996
     </div>
+
+
+
+    <!-- FIELD INSTRUCTION -->
 
     <div class="directive">
 
@@ -440,13 +747,21 @@ button:active {
         </strong>
 
         <p>
-            A witness statement has been recovered at this location.
-            Examine the note held by the witness carefully.
-            The answers to the following questions are contained
-            within the recovered statement.
+
+            A witness statement has been recovered
+            at this location.
+
+            Examine the note held by the witness
+            carefully.
+
+            The answers to the following questions
+            are contained within the recovered
+            statement.
+
         </p>
 
     </div>
+
 
 
     <!-- QUESTION 1 -->
@@ -460,49 +775,87 @@ button:active {
             VALIDATION 01 // WITNESS COUNT
         </div>
 
+
         <div class="question">
-            How many kids did the witness remember seeing together?
+
+            How many kids did the witness
+            remember seeing together?
+
         </div>
+
 
         <div class="options">
 
-            <button onclick="wrongAnswer(1)">
+
+            <button
+                onclick="wrongAnswer(1)"
+            >
                 2
             </button>
 
-            <button onclick="wrongAnswer(1)">
+
+            <button
+                onclick="wrongAnswer(1)"
+            >
                 3
             </button>
 
-            <button onclick="correctAnswer(1)">
+
+            <button
+                onclick="correctAnswer(1)"
+            >
                 4
             </button>
 
-            <button onclick="wrongAnswer(1)">
+
+            <button
+                onclick="wrongAnswer(1)"
+            >
                 5
             </button>
 
+
         </div>
 
-        <div id="result1" class="result"></div>
+
+        <div
+            id="result1"
+            class="result"
+        >
+        </div>
+
 
         <div class="hint-area">
+
 
             <button
                 class="hint-button"
                 onclick="showHint(1)"
             >
+
                 REQUEST HINT 01
+
             </button>
 
-            <div id="hint1" class="hint">
-                Read the first part of the witness statement.
-                The witness tells you exactly how many kids were seen.
+
+            <div
+                id="hint1"
+                class="hint"
+            >
+
+                Read the first part of the
+                witness statement.
+
+                The witness tells you exactly
+                how many kids were seen.
+
             </div>
+
 
         </div>
 
     </div>
+
 
 
     <!-- QUESTION 2 -->
@@ -516,49 +869,86 @@ button:active {
             VALIDATION 02 // RECOVERED OBJECTS
         </div>
 
+
         <div class="question">
-            What were the kids carrying when the witness saw them?
+
+            What were the kids carrying when
+            the witness saw them?
+
         </div>
+
 
         <div class="options">
 
-            <button onclick="wrongAnswer(2)">
+
+            <button
+                onclick="wrongAnswer(2)"
+            >
                 FLASHLIGHTS
             </button>
 
-            <button onclick="correctAnswer(2)">
+
+            <button
+                onclick="correctAnswer(2)"
+            >
                 HALLOWEEN CANDY
             </button>
 
-            <button onclick="wrongAnswer(2)">
+
+            <button
+                onclick="wrongAnswer(2)"
+            >
                 FOOTBALLS
             </button>
 
-            <button onclick="wrongAnswer(2)">
+
+            <button
+                onclick="wrongAnswer(2)"
+            >
                 BACKPACKS
             </button>
 
+
         </div>
 
-        <div id="result2" class="result"></div>
+
+        <div
+            id="result2"
+            class="result"
+        >
+        </div>
+
 
         <div class="hint-area">
+
 
             <button
                 class="hint-button"
                 onclick="showHint(2)"
             >
+
                 REQUEST HINT 02
+
             </button>
 
-            <div id="hint2" class="hint">
-                The witness says the kids were coming from the houses.
+
+            <div
+                id="hint2"
+                class="hint"
+            >
+
+                The witness says the kids were
+                coming from the houses.
+
                 Look at what they were carrying.
+
             </div>
+
 
         </div>
 
     </div>
+
 
 
     <!-- QUESTION 3 -->
@@ -572,50 +962,95 @@ button:active {
             VALIDATION 03 // GROUP SEPARATION
         </div>
 
+
         <div class="question">
-            According to the witness, how did the four kids
-            split up?
+
+            According to the witness, how did
+            the four kids split up?
+
         </div>
+
 
         <div class="options">
 
-            <button onclick="wrongAnswer(3)">
-                TWO WENT ONE WAY / TWO WENT ANOTHER
+
+            <button
+                onclick="wrongAnswer(3)"
+            >
+
+                TWO WENT ONE WAY /
+                TWO WENT ANOTHER
+
             </button>
 
-            <button onclick="correctAnswer(3)">
-                THREE WENT ONE WAY / ONE WENT ANOTHER
+
+            <button
+                onclick="correctAnswer(3)"
+            >
+
+                THREE WENT ONE WAY /
+                ONE WENT ANOTHER
+
             </button>
 
-            <button onclick="wrongAnswer(3)">
+
+            <button
+                onclick="wrongAnswer(3)"
+            >
+
                 THEY ALL STAYED TOGETHER
+
             </button>
 
-            <button onclick="wrongAnswer(3)">
+
+            <button
+                onclick="wrongAnswer(3)"
+            >
+
                 THEY ALL WENT DIFFERENT WAYS
+
             </button>
+
 
         </div>
 
-        <div id="result3" class="result"></div>
+
+        <div
+            id="result3"
+            class="result"
+        >
+        </div>
+
 
         <div class="hint-area">
+
 
             <button
                 class="hint-button"
                 onclick="showHint(3)"
             >
+
                 REQUEST HINT 03
+
             </button>
 
-            <div id="hint3" class="hint">
-                The final lines of the witness statement explain
-                exactly how the group separated.
+
+            <div
+                id="hint3"
+                class="hint"
+            >
+
+                The final lines of the witness
+                statement explain exactly how
+                the group separated.
+
             </div>
+
 
         </div>
 
     </div>
+
 
 
     <!-- SUCCESS -->
@@ -625,165 +1060,263 @@ button:active {
         class="success"
     >
 
+
         <div class="success-label">
+
             ✓ WITNESS STATEMENT VERIFIED
+
         </div>
 
+
         <h2>
+
             EVIDENCE RECOVERED
+
         </h2>
+
+
 
         <div class="unaccounted">
 
-            FOUR KIDS.<br>
-            HALLOWEEN CANDY.<br>
-            THREE TO ONE.
-            <br><br>
+            FOUR KIDS.
+            <br>
 
-            The group separated while trying to get home.
-            <br><br>
+            HALLOWEEN CANDY.
+            <br>
+
+            THREE TO ONE.
+
+            <br>
+            <br>
+
+            The group separated while trying
+            to get home.
+
+            <br>
+            <br>
 
             <strong>
+
                 WITNESS ACCOUNT CONFIRMED.
+
             </strong>
 
         </div>
 
+
+
         <div class="recovery">
 
+
             <small>
+
                 RECOVERY AUTHORIZATION
+
             </small>
 
+
             <div class="locker">
+
                 EVIDENCE LOCKER C
+
             </div>
+
 
             <div class="code">
+
                 ACCESS CODE: 317
+
             </div>
 
+
         </div>
+
+
 
         <div class="instructions">
 
-            Locate <strong>Evidence Locker C</strong>.
-            Enter access code <strong>317</strong>.
-            <br><br>
+            Locate
+            <strong>
+                Evidence Locker C
+            </strong>.
 
-            Retrieve <strong>ONE</strong> sealed
-            <strong>PHOTO FRAGMENT #3</strong>
+            Enter access code
+            <strong>
+                317
+            </strong>.
+
+            <br>
+            <br>
+
+            Retrieve
+            <strong>
+                ONE
+            </strong>
+            sealed
+            <strong>
+                PHOTO FRAGMENT #3
+            </strong>
             marked for your team.
-            <br><br>
 
-            Keep the fragment with your team's evidence.
-            The recovered fragments will be assembled at
-            Highfield Incident Command.
+            <br>
+            <br>
+
+            Keep the fragment with your
+            team's evidence.
+
+            The recovered fragments will be
+            assembled at Highfield Incident
+            Command.
 
         </div>
 
+
+
         <div class="warning">
 
-            ⚠ DO NOT REMOVE ANOTHER TEAM'S EVIDENCE.<br>
-            ⚠ DO NOT DISCARD THE PHOTO FRAGMENT.<br>
-            ⚠ KEEP YOUR EVIDENCE WITH YOUR TEAM.<br>
+            ⚠ DO NOT REMOVE ANOTHER TEAM'S EVIDENCE.
+            <br>
+
+            ⚠ DO NOT DISCARD THE PHOTO FRAGMENT.
+            <br>
+
+            ⚠ KEEP YOUR EVIDENCE WITH YOUR TEAM.
+            <br>
+
             ⚠ CONTINUE TO YOUR NEXT ASSIGNED STATION.
 
         </div>
 
+
     </div>
+
 
 
     <div class="footer">
+
         HIGHFIELD INCIDENT COMMAND //
         FIELD SYSTEM //
         CASE #103196
+
     </div>
+
 
 </div>
 
 
-<script>
 
-let progress = 0;
+<script>
 
 
 function wrongAnswer(questionNumber) {
 
     const result =
-        document.getElementById("result" + questionNumber);
+        document.getElementById(
+            "result" + questionNumber
+        );
 
-    result.className = "result bad";
+
+    result.className =
+        "result bad";
+
 
     if (questionNumber === 1) {
 
         result.innerHTML =
+
             "✕ WITNESS ACCOUNT REJECTED<br>" +
-            "That number does not match the recovered statement.<br>" +
+
+            "The number does not match the recovered statement.<br>" +
+
             "Read the witness note again.";
 
     }
 
+
     if (questionNumber === 2) {
 
         result.innerHTML =
+
             "✕ EVIDENCE REJECTED<br>" +
+
             "That object is not mentioned in the witness statement.<br>" +
+
             "Read the note again.";
 
     }
 
+
     if (questionNumber === 3) {
 
         result.innerHTML =
+
             "✕ WITNESS ACCOUNT REJECTED<br>" +
+
             "That does not match the witness's final observation.<br>" +
+
             "Read the final lines again.";
 
     }
+
 }
+
 
 
 function correctAnswer(questionNumber) {
 
     const result =
-        document.getElementById("result" + questionNumber);
+        document.getElementById(
+            "result" + questionNumber
+        );
 
-    result.className = "result good";
+
+    result.className =
+        "result good";
+
 
     if (questionNumber === 1) {
 
         result.innerHTML =
+
             "✓ WITNESS COUNT CONFIRMED<br>" +
+
             "FOUR kids were seen together.";
 
     }
 
+
     if (questionNumber === 2) {
 
         result.innerHTML =
+
             "✓ OBJECT IDENTIFIED<br>" +
+
             "The kids were carrying Halloween candy.";
 
     }
 
+
     if (questionNumber === 3) {
 
         result.innerHTML =
+
             "✓ GROUP SEPARATION CONFIRMED<br>" +
+
             "Three went one way. One went the other.";
 
     }
 
-    progress++;
 
     setTimeout(function() {
+
 
         if (questionNumber === 1) {
 
             document
                 .getElementById("step2")
-                .classList.remove("hidden");
+                .classList
+                .remove("hidden");
+
 
             document
                 .getElementById("step2")
@@ -794,11 +1327,14 @@ function correctAnswer(questionNumber) {
 
         }
 
+
         if (questionNumber === 2) {
 
             document
                 .getElementById("step3")
-                .classList.remove("hidden");
+                .classList
+                .remove("hidden");
+
 
             document
                 .getElementById("step3")
@@ -808,12 +1344,15 @@ function correctAnswer(questionNumber) {
                 });
 
         }
+
 
         if (questionNumber === 3) {
 
             document
                 .getElementById("success")
-                .classList.add("active");
+                .classList
+                .add("active");
+
 
             document
                 .getElementById("success")
@@ -824,19 +1363,27 @@ function correctAnswer(questionNumber) {
 
         }
 
+
     }, 800);
+
 }
+
 
 
 function showHint(questionNumber) {
 
     document
-        .getElementById("hint" + questionNumber)
-        .style.display = "block";
+        .getElementById(
+            "hint" + questionNumber
+        )
+        .style
+        .display = "block";
 
 }
 
+
 </script>
+
 
 </body>
 </html>
